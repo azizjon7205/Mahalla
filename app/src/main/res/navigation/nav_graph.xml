@@ -20,6 +20,16 @@
         app:destination="@id/governorFlowFragment"
         app:popUpTo="@id/nav_graph"/>
 
+    <action
+        android:id="@+id/action_global_villagesFlowFragment"
+        app:destination="@id/villagesFlowFragment"
+        app:popUpTo="@id/nav_graph"/>
+
+    <action
+        android:id="@+id/action_global_governorAssistantFlowFragment"
+        app:destination="@id/governorAssistantFlowFragment"
+        app:popUpTo="@id/nav_graph"/>
+
     <fragment
         android:id="@+id/splashFragment"
         android:name="uz.frankie.mahalla.ui.splash.SplashFragment"
@@ -35,4 +45,16 @@
         android:name="uz.frankie.mahalla.ui.governor.GovernorFlowFragment"
         android:label="flow_fragment_governor"
         tools:layout="@layout/flow_fragment_governor" />
+    <fragment
+        android:id="@+id/governorAssistantFlowFragment"
+        android:name="uz.frankie.mahalla.ui.governer_assistant.GovernorAssistantFlowFragment"
+        android:label="flow_fragment_governor_assistant"
+        tools:layout="@layout/flow_fragment_governor_assistant" />
+    <fragment
+        android:id="@+id/villagesFlowFragment"
+        android:name="uz.frankie.mahalla.ui.villages.VillagesFlowFragment"
+        android:label="flow_fragment_villages"
+        tools:layout="@layout/flow_fragment_villages" />
+
+
 </navigation>
