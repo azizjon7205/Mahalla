@@ -23,6 +23,7 @@
     <color name="s_border_blue">#E7EAEF</color>
     <color name="s_bg_blue_100">#DFF2FF</color>
     <color name="s_gray">#797979</color>
+    <color name="s_light_gray">#F0F0F0</color>
     <color name="s_green">#3BB800</color>
     <color name="s_light_green">#F5F7F6</color>
 
