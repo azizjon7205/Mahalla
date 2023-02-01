@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/splashFragment">
+
+    <action
+        android:id="@+id/action_global_splashFragment"
+        app:destination="@id/splashFragment"
+        app:popUpTo="@id/nav_graph"/>
+
+    <action
+        android:id="@+id/action_global_authFlowFragment"
+        app:destination="@id/authFlowFragment"
+        app:popUpTo="@id/nav_graph"/>
+
+    <action
+        android:id="@+id/action_global_governorFlowFragment"
+        app:destination="@id/governorFlowFragment"
+        app:popUpTo="@id/nav_graph"/>
+
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="uz.frankie.mahalla.ui.splash.SplashFragment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash" />
+    <fragment
+        android:id="@+id/authFlowFragment"
+        android:name="uz.frankie.mahalla.ui.auth.AuthFlowFragment"
+        android:label="flow_fragment_auth"
+        tools:layout="@layout/flow_fragment_auth" />
+    <fragment
+        android:id="@+id/governorFlowFragment"
+        android:name="uz.frankie.mahalla.ui.governor.GovernorFlowFragment"
+        android:label="flow_fragment_governor"
+        tools:layout="@layout/flow_fragment_governor" />
+</navigation>
