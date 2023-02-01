@@ -2,4 +2,23 @@
     <string name="app_name">Mahalla</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+<!--    Kriteriyalar-->
+<!--   1. xotin-qizlar-->
+    <string name="ijtimoiy_himoya">Ijtimoiy himoyaga muhtoj ishsiz xotin-qizlar </string>
+    <string name="tadbirkorlik_istagidagi">Tadbirkorlik qilish istagida bo\'lgan xotin-qizlar </string>
+    <string name="boquvchisiz">Boquvchisi bo`magan ehtiyojmand xotin-qizlar </string>
+    <string name="nogironligi_borlar">Ijtimoyiy yordamga muhtoj 1-guruh va 2-guruh nogironlari </string>
+    <string name="uy_joyga_muhtoj">Uy joyga muhtoj ehtiyojmand xotin-qizlar</string>
+    <string name="qaramogida_nogironi_borlar">Qaramog`ida nogironligi bo`lgan xotin-qizlar</string>
+    <string name="ajrimlar">Ajrim bo`yicha oilalarni yarashtirish </string>
+
+<!--    2.  Hokim yordamchisi-->
+    <string name="ishsizlar">Ishsizlar</string>
+    <string name="band_qilganlar">O\'z-o\'zini band qilish</string>
+    <string name="bank_kredit">Bank kredit</string>
+    <string name="ishga_joylashganlar">Ishga joylashganlar</string>
+    <string name="ijtimoiy_nafaqa">Ijtimoiy nafaqa</string>
+    <string name="subsidiya">Subsidiya</string>
+    <string name="murojatlar">Murojaatlar</string>
 </resources>
