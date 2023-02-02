@@ -24,4 +24,6 @@
     <color name="s_green">#3BB800</color>
     <color name="s_light_green">#F5F7F6</color>
 
+    <color name="s_black_text">#001135</color>
+
 </resources>
