@@ -9,17 +9,22 @@ import uz.frankie.mahalla.databinding.ItemPersonInfoBinding
 
 class PersonInfoAdapter() : ListAdapter<PersonInfo, PersonInfoAdapter.VH>(ITEM_DIFF) {
 
-    private var exchangeIconClick: ((PersonInfo) -> Unit)? = null
-    fun setExchangeIconClickListener(f: (item: PersonInfo) -> Unit) {
-        exchangeIconClick = f
+    private var rootClick: ((PersonInfo) -> Unit)? = null
+    fun setRootClickListener(f: (item: PersonInfo) -> Unit) {
+        rootClick = f
     }
 
     inner class VH(private val binding: ItemPersonInfoBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: PersonInfo){
-            binding.tvFullName.text = item.fullName
-            binding.tvAddress.text = item.address
-            binding.tvAge.text = item.age.toString()
+            binding.apply {
+                tvFullName.text = item.fullName
+                tvAddress.text = item.address
+                tvAge.text = item.age.toString()
+                root.setOnClickListener {
+                    rootClick!!.invoke(item)
+                }
+            }
         }
     }
 

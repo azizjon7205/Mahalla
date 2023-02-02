@@ -1,10 +1,12 @@
-package uz.frankie.mahalla.ui.governer_assistant.main
+package uz.frankie.mahalla.ui.governor_assistant.main
 
+import uz.frankie.mahalla.R
 import uz.frankie.mahalla.databinding.FragmentGovernorAssistantBinding
 import uz.frankie.mahalla.adapter.governor_assistant.PersonInfo
 import uz.frankie.mahalla.adapter.governor_assistant.PersonInfoAdapter
 import uz.frankie.mahalla.dialogs.governor_assistant.CriteriaDialog
-import uz.frankie.mahalla.ui.governer_assistant.BaseGovernorAssistantFragment
+import uz.frankie.mahalla.ui.governor_assistant.BaseGovernorAssistantFragment
+import uz.frankie.mahalla.utils.extentions.navigateSafely
 
 class GovernorAssistantFragment : BaseGovernorAssistantFragment<FragmentGovernorAssistantBinding>(
     FragmentGovernorAssistantBinding::inflate
@@ -13,14 +15,26 @@ class GovernorAssistantFragment : BaseGovernorAssistantFragment<FragmentGovernor
     private val personInfoAdapter by lazy { PersonInfoAdapter() }
     override fun onViewCreate() {
         personInfoAdapter.setData(personList())
-        binding.rvPersons.adapter = personInfoAdapter
+        binding.apply {
+            rvPersons.adapter = personInfoAdapter
 
-        binding.ivFilter.setOnClickListener {
-            CriteriaDialog(requireContext(), criteriaList()).apply {
-                clickSelectCriteria { criteriaName ->
-                    personList(criteriaName)
-                }
-            }.show()
+            ivFilter.setOnClickListener {
+                CriteriaDialog(requireContext(), criteriaList()).apply {
+                    clickSelectCriteria { criteriaName ->
+                        personList(criteriaName)
+                    }
+                }.show()
+            }
+
+            ivBack.setOnClickListener {
+                navController.popBackStack()
+            }
+            ivAddUser.setOnClickListener {
+                navController.navigateSafely(R.id.action_governorAssistantFragment_to_addUserFragment)
+            }
+        }
+        personInfoAdapter.setRootClickListener {
+            navController.navigateSafely(R.id.action_governorAssistantFragment_to_detailsFragment)
         }
     }
 

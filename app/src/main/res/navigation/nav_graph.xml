@@ -47,7 +47,7 @@
         tools:layout="@layout/flow_fragment_governor" />
     <fragment
         android:id="@+id/governorAssistantFlowFragment"
-        android:name="uz.frankie.mahalla.ui.governer_assistant.GovernorAssistantFlowFragment"
+        android:name="uz.frankie.mahalla.ui.governor_assistant.GovernorAssistantFlowFragment"
         android:label="flow_fragment_governor_assistant"
         tools:layout="@layout/flow_fragment_governor_assistant" />
     <fragment
