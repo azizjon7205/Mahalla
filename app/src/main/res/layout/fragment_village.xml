@@ -73,6 +73,7 @@
     </com.google.android.material.card.MaterialCardView>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_village_workers"
         android:layout_marginTop="10dp"
         tools:itemCount="5"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"

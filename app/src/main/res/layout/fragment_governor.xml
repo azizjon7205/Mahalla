@@ -8,6 +8,7 @@
     tools:context=".ui.governor.GovernorFragment">
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_villages"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="10dp"
         android:layout_width="match_parent"
