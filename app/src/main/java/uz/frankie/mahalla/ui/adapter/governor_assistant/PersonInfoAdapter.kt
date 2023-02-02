@@ -14,11 +14,6 @@ class PersonInfoAdapter() : ListAdapter<PersonInfo, PersonInfoAdapter.VH>(ITEM_D
         exchangeIconClick = f
     }
 
-    private var deleteIconClick: ((String) -> Unit)? = null
-    fun setDeleteIconClickListener(f: (ccy: String) -> Unit) {
-        deleteIconClick = f
-    }
-
     inner class VH(private val binding: ItemPersonInfoBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: PersonInfo){
