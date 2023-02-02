@@ -32,7 +32,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_weight="1"
-                android:text="@string/xotin_qizlar"
+                android:text="@string/user_qo_shish"
                 android:textColor="@color/s_0D_100"
                 android:textSize="24sp"
                 android:textStyle="bold" />
@@ -44,66 +44,52 @@
                 android:src="@drawable/ic_notification" />
         </androidx.appcompat.widget.LinearLayoutCompat>
 
+
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="30dp"
-            android:gravity="center_vertical"
+            android:gravity="center_vertical|center_horizontal"
             android:orientation="horizontal">
 
-            <com.google.android.material.imageview.ShapeableImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_gravity="center_vertical"
-                android:layout_margin="10dp"
-                android:padding="5dp"
-                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
-                app:srcCompat="@mipmap/ic_launcher"
-                app:strokeColor="@android:color/darker_gray"
-                app:strokeWidth="1dp" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_weight="1"
-                android:orientation="vertical">
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-                <TextView
-                    android:id="@+id/tv_full_name_assist"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Ismoilova Sayyora"
-                    android:textColor="@color/s_0D_100"
-                    android:textSize="22sp"
-                    android:textStyle="bold" />
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:background="@drawable/bg_image"
+                        android:gravity="center_vertical|center_horizontal">
 
-                <androidx.appcompat.widget.LinearLayoutCompat
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_person" />
+                    </androidx.appcompat.widget.LinearLayoutCompat>
 
-                    <TextView
-                        android:id="@+id/tv_mahalla_name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Shodlik"
-                        android:textColor="@color/s_0D_70"
-                        android:textSize="18sp"
-                        android:textStyle="normal" />
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="end|bottom"
+                        android:background="@drawable/bg_add_btn"
+                        android:gravity="center">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:maxLines="1"
-                        android:text=" mahallasi fuqorosi"
-                        android:textColor="@color/s_0D_70"
-                        android:textSize="18sp"
-                        android:textStyle="normal" />
-                </androidx.appcompat.widget.LinearLayoutCompat>
+                        <ImageView
+                            android:id="@+id/iv_add_image"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_add" />
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+                </FrameLayout>
+            </LinearLayout>
 
-            </androidx.appcompat.widget.LinearLayoutCompat>
+
         </androidx.appcompat.widget.LinearLayoutCompat>
 
         <androidx.core.widget.NestedScrollView
@@ -162,10 +148,10 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:background="@drawable/bg_details_table"
+                        android:maxLines="1"
                         android:paddingHorizontal="16dp"
                         android:paddingVertical="18dp"
                         android:text="Shodlik maxallasi 31 do’m 12 xonadon"
-                        android:maxLines="1"
                         android:textColor="@color/s_0D_100"
                         android:textSize="20sp" />
                 </androidx.appcompat.widget.LinearLayoutCompat>

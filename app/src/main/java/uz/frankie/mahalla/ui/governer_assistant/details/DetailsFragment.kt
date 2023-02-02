@@ -1,4 +1,4 @@
-package uz.frankie.mahalla.ui.governer_assistant
+package uz.frankie.mahalla.ui.governer_assistant.details
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
