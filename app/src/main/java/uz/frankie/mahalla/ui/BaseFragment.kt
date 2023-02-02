@@ -1,4 +1,4 @@
-package uz.frankie.mahalla.ui.governer_assistant
+package uz.frankie.mahalla.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,7 +11,7 @@ import androidx.viewbinding.ViewBinding
 
 typealias Inflate<T> = (LayoutInflater, ViewGroup?, Boolean) -> T
 
-abstract class BaseGovernorAssistantFragment<VB : ViewBinding>(
+abstract class BaseFragment<VB : ViewBinding>(
     private val inflate: Inflate<VB>
 ) : Fragment(){
 
@@ -19,6 +19,7 @@ abstract class BaseGovernorAssistantFragment<VB : ViewBinding>(
     val binding get() = _binding!!
 
     lateinit var navController: NavController
+//    val shared by lazy { SharedPreferencesHelper(context = requireActivity()) }
 
     override fun onCreateView(
         inflater: LayoutInflater,

@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/governor_assistant_graph.xml">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/governor_assistant_graph.xml"
+    app:startDestination="@id/governorAssistantFragment">
+
+    <fragment
+        android:id="@+id/governorAssistantFragment"
+        android:name="uz.frankie.mahalla.ui.governor_assistant.main.GovernorAssistantFragment"
+        android:label="fragment_governor_assistant"
+        tools:layout="@layout/fragment_governor_assistant" >
+    </fragment>
 
 </navigation>

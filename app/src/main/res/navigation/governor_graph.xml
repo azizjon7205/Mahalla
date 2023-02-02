@@ -1,6 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/governor_graph.xml">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/governor_graph.xml"
+    app:startDestination="@id/governorFragment">
+
+    <fragment
+        android:id="@+id/governorFragment"
+        android:name="uz.frankie.mahalla.ui.governor.GovernorFragment"
+        android:label="fragment_governor"
+        tools:layout="@layout/fragment_governor" >
+        <action
+            android:id="@+id/action_governorFragment_to_villagesFragment"
+            app:destination="@id/villagesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/villagesFragment"
+        android:name="uz.frankie.mahalla.ui.villages.VillageFragment"
+        android:label="fragment_village"
+        tools:layout="@layout/fragment_village" >
+        <action
+            android:id="@+id/action_villagesFragment_to_governorAssistantFragment"
+            app:destination="@id/governorAssistantFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/governorAssistantFragment"
+        android:name="uz.frankie.mahalla.ui.governor_assistant.main.GovernorAssistantFragment"
+        android:label="fragment_governor_assistant"
+        tools:layout="@layout/fragment_governor_assistant" >
+        <action
+            android:id="@+id/action_governorAssistantFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+        <action
+            android:id="@+id/action_governorAssistantFragment_to_addUserFragment"
+            app:destination="@id/addUserFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="uz.frankie.mahalla.ui.governor_assistant.details.DetailsFragment"
+        android:label="DetailsFragment"
+        tools:layout="@layout/fragment_details"/>
+    <fragment
+        android:id="@+id/addUserFragment"
+        android:name="uz.frankie.mahalla.ui.governor_assistant.add_user.AddUserFragment"
+        android:label="fragment_add_user"
+        tools:layout="@layout/fragment_add_user" />
+
 
 </navigation>

@@ -27,4 +27,5 @@
     <string name="phone_number">Phone number</string>
     <string name="text_instruction_sign_in">Please enter the Login and Password for your User account!</string>
     <string name="username">Username</string>
+    <string name="list_of_villages">Mahallalar ro\'yxati</string>
 </resources>
