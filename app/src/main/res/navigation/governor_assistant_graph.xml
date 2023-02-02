@@ -7,8 +7,9 @@
 
     <fragment
         android:id="@+id/governorAssistantFragment"
-        android:name="uz.frankie.mahalla.ui.governer_assistant.main.GovernorAssistantFragment"
+        android:name="uz.frankie.mahalla.ui.governor_assistant.main.GovernorAssistantFragment"
         android:label="fragment_governor_assistant"
-        tools:layout="@layout/fragment_governor_assistant" />
+        tools:layout="@layout/fragment_governor_assistant" >
+    </fragment>
 
 </navigation>

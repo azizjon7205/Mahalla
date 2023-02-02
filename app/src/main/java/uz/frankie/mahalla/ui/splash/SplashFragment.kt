@@ -23,7 +23,6 @@ class SplashFragment : Fragment(R.layout.fragment_splash) {
 
             override fun onFinish() {
                 activityNavController().navigateSafely(R.id.action_global_governorFlowFragment)
-
             }
         }.start()
     }

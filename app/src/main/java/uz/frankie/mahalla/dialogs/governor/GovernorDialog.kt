@@ -1,10 +1,9 @@
-package uz.frankie.mahalla.ui.adapter.governor
+package uz.frankie.mahalla.dialogs.governor
 
 /**
  * Bu shunchaki misol tariqasida Create qilingan, xullas qolgan
  * adapterlar ham shunday Package larga mos tartibda ketadi
  */
 
-class GovernorListAdapter {
-
+class GovernorDialog {
 }

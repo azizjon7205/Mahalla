@@ -1,4 +1,4 @@
-package uz.frankie.mahalla.ui.adapter.governor
+package uz.frankie.mahalla.adapter.governor
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
