@@ -63,8 +63,7 @@
                     android:layout_height="wrap_content"/>
                 <ImageView
                     android:layout_marginStart="8dp"
-                    android:src="@drawable/ic_back"
-                    android:rotation="180"
+                    android:src="@drawable/ic_arrow_right"
                     android:layout_width="4.24dp"
                     android:layout_height="6.36dp"
                     app:tint="@color/black" />
