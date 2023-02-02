@@ -1,4 +1,4 @@
-package uz.frankie.mahalla.ui.adapter.governor_assistant
+package uz.frankie.mahalla.adapter.governor_assistant
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

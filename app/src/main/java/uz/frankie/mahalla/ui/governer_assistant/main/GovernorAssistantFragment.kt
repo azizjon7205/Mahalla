@@ -1,9 +1,9 @@
 package uz.frankie.mahalla.ui.governer_assistant.main
 
 import uz.frankie.mahalla.databinding.FragmentGovernorAssistantBinding
-import uz.frankie.mahalla.ui.adapter.governor_assistant.PersonInfo
-import uz.frankie.mahalla.ui.adapter.governor_assistant.PersonInfoAdapter
-import uz.frankie.mahalla.ui.dialogs.governor_assistant.CriteriaDialog
+import uz.frankie.mahalla.adapter.governor_assistant.PersonInfo
+import uz.frankie.mahalla.adapter.governor_assistant.PersonInfoAdapter
+import uz.frankie.mahalla.dialogs.governor_assistant.CriteriaDialog
 import uz.frankie.mahalla.ui.governer_assistant.BaseGovernorAssistantFragment
 
 class GovernorAssistantFragment : BaseGovernorAssistantFragment<FragmentGovernorAssistantBinding>(

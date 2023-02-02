@@ -1,4 +1,4 @@
-package uz.frankie.mahalla.ui.adapter.village
+package uz.frankie.mahalla.adapter.village
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
