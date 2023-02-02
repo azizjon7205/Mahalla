@@ -45,7 +45,7 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
 
 
             binding.btnSignIn.setOnClickListener {
-//                findNavController().navigate(R.id.action_global_governorFlowFragment)
+               findNavController().navigate(R.id.action_global_governorFlowFragment)
                 Toast.makeText(requireActivity(), "Signed in successfully", Toast.LENGTH_SHORT).show()
             }
 
