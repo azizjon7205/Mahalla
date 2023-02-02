@@ -3,14 +3,14 @@ package uz.frankie.mahalla.ui.villages
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
+import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import uz.frankie.mahalla.R
 import uz.frankie.mahalla.databinding.FragmentVillageBinding
 import uz.frankie.mahalla.model.Village
-import uz.frankie.mahalla.ui.adapter.governor.VillagesListAdapter
 import uz.frankie.mahalla.ui.adapter.village.VillagesWorkersAdapter
 
-class VillagesFragment : Fragment(R.layout.fragment_village) {
+class VillageFragment : Fragment(R.layout.fragment_village) {
     private val binding by viewBinding(FragmentVillageBinding::bind)
     private val adapterVillageWorkers by lazy { VillagesWorkersAdapter() }
 
@@ -22,6 +22,10 @@ class VillagesFragment : Fragment(R.layout.fragment_village) {
 
     private fun initViews() {
         adapterVillageWorkers.submitList(listOfVillages())
+        adapterVillageWorkers.onClick = {
+            findNavController().navigate(R.id.action_villagesFragment_to_governorAssistantFragment)
+        }
+
         binding.apply {
             rvVillageWorkers.adapter = adapterVillageWorkers
         }

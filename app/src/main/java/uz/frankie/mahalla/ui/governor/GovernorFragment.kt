@@ -25,7 +25,7 @@ class GovernorFragment : Fragment(R.layout.fragment_governor) {
     private fun initViews() {
         adapterVillages.submitList(listOfVillages())
         adapterVillages.onClick = {
-//            findNavController().navigate()
+            findNavController().navigate(R.id.action_governorFragment_to_villagesFragment)
         }
 
         binding.apply {

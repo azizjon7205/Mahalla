@@ -22,7 +22,7 @@ class SplashFragment : Fragment(R.layout.fragment_splash) {
             override fun onTick(millisUntilFinished: Long) { }
 
             override fun onFinish() {
-                activityNavController().navigateSafely(R.id.action_global_authFlowFragment)
+                activityNavController().navigateSafely(R.id.action_global_governorFlowFragment)
 
             }
         }.start()
