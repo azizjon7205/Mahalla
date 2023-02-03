@@ -22,5 +22,10 @@
     <string name="subsidiya">Subsidiya</string>
     <string name="murojatlar">Murojaatlar</string>
     <string name="xotin_qizlar">Xotin-qizlar ...</string>
+    <string name="sign_in">Sign In</string>
+    <string name="password">Password</string>
+    <string name="phone_number">Phone number</string>
+    <string name="text_instruction_sign_in">Please enter the Login and Password for your User account!</string>
+    <string name="username">Username</string>
     <string name="list_of_villages">Mahallalar ro\'yxati</string>
 </resources>

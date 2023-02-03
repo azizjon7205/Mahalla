@@ -1,10 +1,10 @@
-package uz.frankie.mahalla.ui.dialogs.governor_assistant
+package uz.frankie.mahalla.dialogs.governor_assistant
 
 import android.app.AlertDialog
 import android.content.Context
 import android.view.LayoutInflater
 import uz.frankie.mahalla.databinding.DialogCriteriaBinding
-import uz.frankie.mahalla.ui.adapter.governor_assistant.CriteriaAdapter
+import uz.frankie.mahalla.adapter.governor_assistant.CriteriaAdapter
 
 class CriteriaDialog(context: Context, criteriaList: List<String>) : AlertDialog(context) {
     val binding = DialogCriteriaBinding.inflate(LayoutInflater.from(context))

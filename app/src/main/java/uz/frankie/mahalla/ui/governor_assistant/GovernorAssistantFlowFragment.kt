@@ -1,6 +1,5 @@
-package uz.frankie.mahalla.ui.governer_assistant
+package uz.frankie.mahalla.ui.governor_assistant
 
-import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import uz.frankie.mahalla.R

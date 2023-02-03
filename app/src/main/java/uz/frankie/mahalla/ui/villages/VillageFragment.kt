@@ -8,7 +8,7 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import uz.frankie.mahalla.R
 import uz.frankie.mahalla.databinding.FragmentVillageBinding
 import uz.frankie.mahalla.model.Village
-import uz.frankie.mahalla.ui.adapter.village.VillagesWorkersAdapter
+import uz.frankie.mahalla.adapter.village.VillagesWorkersAdapter
 
 class VillageFragment : Fragment(R.layout.fragment_village) {
     private val binding by viewBinding(FragmentVillageBinding::bind)
