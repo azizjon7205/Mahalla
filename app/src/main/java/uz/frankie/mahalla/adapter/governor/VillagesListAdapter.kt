@@ -25,6 +25,7 @@ class VillagesListAdapter: ListAdapter<Village, VillagesListAdapter.ViewHolder>(
         fun bind() {
             val village = getItem(adapterPosition)
             with(binding) {
+                tvMahalla.text = village.name + " mahallasi"
                 root.setOnClickListener {
                     onClick?.invoke(village)
                 }

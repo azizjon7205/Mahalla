@@ -32,6 +32,10 @@ class GovernorAssistantFragment : BaseGovernorAssistantFragment<FragmentGovernor
             ivAddUser.setOnClickListener {
                 navController.navigateSafely(R.id.action_governorAssistantFragment_to_addUserFragment)
             }
+
+            llDetail.setOnClickListener {
+                navController.navigateSafely(R.id.action_governorAssistantFragment_to_detailsFragment)
+            }
         }
         personInfoAdapter.setRootClickListener {
             navController.navigateSafely(R.id.action_governorAssistantFragment_to_detailsFragment)
