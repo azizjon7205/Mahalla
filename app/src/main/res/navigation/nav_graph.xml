@@ -2,8 +2,8 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph"
-    app:startDestination="@id/signInFragment">
+    app:startDestination="@id/splashFragment"
+    android:id="@+id/nav_graph">
 
     <action
         android:id="@+id/action_global_splashFragment"
@@ -55,11 +55,6 @@
         android:name="uz.frankie.mahalla.ui.villages.VillagesFlowFragment"
         android:label="flow_fragment_villages"
         tools:layout="@layout/flow_fragment_villages" />
-    <fragment
-        android:id="@+id/signInFragment"
-        android:name="uz.frankie.mahalla.ui.auth.SignInFragment"
-        android:label="fragment_sign_in"
-        tools:layout="@layout/fragment_sign_in" />
 
 
 </navigation>

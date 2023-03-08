@@ -12,6 +12,8 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import uz.frankie.mahalla.MainActivity
 import uz.frankie.mahalla.R
 import uz.frankie.mahalla.databinding.FragmentSignInBinding
+import uz.frankie.mahalla.utils.extentions.activityNavController
+import uz.frankie.mahalla.utils.extentions.navigateSafely
 
 
 class SignInFragment : Fragment(R.layout.fragment_sign_in) {
@@ -21,8 +23,8 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
 
         val textWatcher = object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
-                binding.btnSignIn.isEnabled = binding.userName.text.toString().isNotEmpty() &&
-                        binding.passwordEt.text.toString().length > 8
+//                binding.btnSignIn.isEnabled = binding.userName.text.toString().isNotEmpty() &&
+//                        binding.passwordEt.text.toString().length > 8
 
 
             }
@@ -40,14 +42,14 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
         binding.apply {
             userName.addTextChangedListener(textWatcher)
             passwordEt.addTextChangedListener(textWatcher)
+
+            btnSignIn.isEnabled = true
         }
 
-
-
-            binding.btnSignIn.setOnClickListener {
-               findNavController().navigate(R.id.action_global_governorFlowFragment)
-                Toast.makeText(requireActivity(), "Signed in successfully", Toast.LENGTH_SHORT).show()
-            }
+        binding.btnSignIn.setOnClickListener {
+            activityNavController().navigateSafely(R.id.action_global_governorFlowFragment)
+            Toast.makeText(requireActivity(), "Signed in successfully", Toast.LENGTH_SHORT).show()
+        }
 
     }
 

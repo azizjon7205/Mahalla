@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/governorFragment"
-        android:name="uz.frankie.mahalla.ui.governor.GovernorFragment"
+        android:name="uz.frankie.mahalla.ui.governor.home.GovernorFragment"
         android:label="fragment_governor"
         tools:layout="@layout/fragment_governor" >
         <action
@@ -45,6 +45,21 @@
         android:name="uz.frankie.mahalla.ui.governor_assistant.add_user.AddUserFragment"
         android:label="fragment_add_user"
         tools:layout="@layout/fragment_add_user" />
+    <fragment
+        android:id="@+id/taskFragment"
+        android:name="uz.frankie.mahalla.ui.governor.task.TaskFragment"
+        android:label="fragment_task"
+        tools:layout="@layout/fragment_task" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="uz.frankie.mahalla.ui.governor.profile.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="uz.frankie.mahalla.ui.governor.settings.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
 
 
 </navigation>
