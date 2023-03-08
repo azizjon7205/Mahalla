@@ -103,6 +103,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/ll_detail"
                     android:layout_margin="20dp"
                     android:layout_gravity="bottom"
                     android:gravity="center_vertical"

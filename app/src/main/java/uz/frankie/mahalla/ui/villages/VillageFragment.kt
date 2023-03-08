@@ -28,6 +28,10 @@ class VillageFragment : Fragment(R.layout.fragment_village) {
 
         binding.apply {
             rvVillageWorkers.adapter = adapterVillageWorkers
+
+            llDetail.setOnClickListener {
+                findNavController().navigate(R.id.action_villagesFragment_to_villageDetailsFragment)
+            }
         }
     }
 

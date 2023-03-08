@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_villagesFragment_to_governorAssistantFragment"
             app:destination="@id/governorAssistantFragment" />
+        <action
+            android:id="@+id/action_villagesFragment_to_villageDetailsFragment"
+            app:destination="@id/villageDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/governorAssistantFragment"
@@ -60,6 +63,11 @@
         android:name="uz.frankie.mahalla.ui.governor.settings.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/villageDetailsFragment"
+        android:name="uz.frankie.mahalla.ui.villages.VillageDetailsFragment"
+        android:label="fragment_village_details"
+        tools:layout="@layout/fragment_village_details" />
 
 
 </navigation>
