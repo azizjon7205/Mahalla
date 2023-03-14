@@ -9,4 +9,11 @@ import uz.frankie.mahalla.R
 
 class VillageDetailsFragment : Fragment(R.layout.fragment_village_details) {
 
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+
+
+    }
 }
