@@ -23,6 +23,7 @@ class TaskFragment : Fragment(R.layout.fragment_task) {
         binding.apply {
 
             val tab = tabLayout.getTabAt(0)
+            val temp = 2 + 7
 
         }
     }
