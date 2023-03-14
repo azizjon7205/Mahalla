@@ -12,6 +12,10 @@ class MyselfScreen:Fragment(R.layout.screen_myself) {
     private val binding by viewBinding(ScreenMyselfBinding::bind)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initView()
+    }
+
+    private fun initView() {
 
     }
 }
