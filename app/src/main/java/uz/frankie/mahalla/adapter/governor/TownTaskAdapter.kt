@@ -1,20 +1,20 @@
-package uz.frankie.mahalla.adapter.governor_assistant
+package uz.frankie.mahalla.adapter.governor
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import uz.frankie.mahalla.databinding.ItemCriteriaBinding
+import uz.frankie.mahalla.databinding.ItemTowntaskBinding
 
-class CriteriaAdapter() : ListAdapter<String, CriteriaAdapter.VH>(ITEM_DIFF) {
+class TownTaskAdapter() : ListAdapter<String, TownTaskAdapter.VH>(ITEM_DIFF) {
 
     private var itemClick: ((String) -> Unit)? = null
     fun itemClicked(f: (item: String) -> Unit) {
         itemClick = f
     }
 
-    inner class VH(private val binding: ItemCriteriaBinding) :
+    inner class VH(private val binding: ItemTowntaskBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: String){
             binding.tvTitle.text = item
@@ -26,7 +26,7 @@ class CriteriaAdapter() : ListAdapter<String, CriteriaAdapter.VH>(ITEM_DIFF) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
         return VH(
-            ItemCriteriaBinding.inflate(
+            ItemTowntaskBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false

@@ -5,8 +5,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentPagerAdapter
+import androidx.viewpager2.adapter.FragmentStateAdapter
+import androidx.viewpager2.widget.ViewPager2
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.Tab
+import com.google.android.material.tabs.TabLayoutMediator
 import uz.frankie.mahalla.R
 import uz.frankie.mahalla.databinding.FragmentTaskBinding
 
@@ -17,15 +25,43 @@ class TaskFragment : Fragment(R.layout.fragment_task) {
         super.onViewCreated(view, savedInstanceState)
 
         initViews()
+
     }
 
     private fun initViews() {
-        binding.apply {
 
-            val tab = tabLayout.getTabAt(0)
+        val tabLayout = binding.tabLayout
+        val viewPager = binding.viewpager2
 
-        }
+
+        val pagerAdapter = ParentFragmentPagerAdapter(requireActivity())
+        viewPager.isUserInputEnabled = false
+        viewPager.adapter = pagerAdapter
+
+        TabLayoutMediator(tabLayout, viewPager,) { tab, position ->
+            val tabNames = listOf("Mahallalarga", "O'zimga")
+            tab.text = tabNames[position]
+        }.attach()
+
+
     }
 
 
+
+}
+class ParentFragmentPagerAdapter(
+    fragmentActivity: FragmentActivity
+) : FragmentStateAdapter(fragmentActivity) {
+
+    override fun createFragment(position: Int): Fragment {
+        return when (position) {
+            0 -> ToTownScreen()
+            1 -> MyselfScreen()
+            else -> ToTownScreen()
+        }
+    }
+
+    override fun getItemCount(): Int {
+        return 2
+    }
 }
