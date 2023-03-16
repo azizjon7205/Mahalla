@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.governor.GovernorFlowFragment">
@@ -10,8 +11,19 @@
         android:id="@+id/nav_host_fragment_governor"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         app:defaultNavHost="true"
+        app:layout_constraintBottom_toTopOf="@id/bnv_governor"
+        app:layout_constraintTop_toTopOf="parent"
         app:navGraph="@navigation/governor_graph" />
 
-</FrameLayout>
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bnv_governor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:labelVisibilityMode="unlabeled"
+        app:itemIconTint="@color/nav_item_color_state"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:menu="@menu/governor_flow_menu" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -78,6 +78,12 @@ dependencies {
     releaseImplementation "com.github.chuckerteam.chucker:library-no-op:3.5.2"
     // Secured Preferences
     implementation "androidx.security:security-crypto:1.1.0-alpha05"
+    //viewPager2
+    implementation "androidx.viewpager2:viewpager2:1.0.0"
+
+    //ZoomableImageView
+    implementation("com.otaliastudios:zoomlayout:1.9.0")
+
 
 
     //material

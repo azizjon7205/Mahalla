@@ -28,15 +28,20 @@ class VillageFragment : Fragment(R.layout.fragment_village) {
 
         binding.apply {
             rvVillageWorkers.adapter = adapterVillageWorkers
+
+            llDetail.setOnClickListener {
+                findNavController().navigate(R.id.action_villagesFragment_to_villageDetailsFragment)
+            }
         }
     }
 
     private fun listOfVillages(): List<Village>{
         var list = ArrayList<Village>()
-        list.add(Village(1, "Shodlik"))
-        list.add(Village(2, "Shodlik"))
-        list.add(Village(3, "Shodlik"))
-        list.add(Village(4, "Shodlik"))
+        list.add(Village(1, "Mahalla raisi"))
+        list.add(Village(2, "Xotin qizlar"))
+        list.add(Village(3, "Yoshlar yetalchisi"))
+        list.add(Village(4, "Hokim yordamchisi"))
+        list.add(Village(5, "Mahalla noziri"))
 
         return list
     }

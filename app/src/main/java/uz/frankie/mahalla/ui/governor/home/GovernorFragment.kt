@@ -1,4 +1,4 @@
-package uz.frankie.mahalla.ui.governor
+package uz.frankie.mahalla.ui.governor.home
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,9 +8,9 @@ import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import uz.frankie.mahalla.R
-import uz.frankie.mahalla.databinding.FragmentGovernorBinding
 import uz.frankie.mahalla.model.Village
 import uz.frankie.mahalla.adapter.governor.VillagesListAdapter
+import uz.frankie.mahalla.databinding.FragmentGovernorBinding
 import uz.frankie.mahalla.utils.extentions.collectLA
 import uz.frankie.mahalla.viewmodels.NeighborhoodVM
 
@@ -55,12 +55,12 @@ class GovernorFragment : Fragment(R.layout.fragment_governor) {
         }
     }
 
-    private fun listOfVillages(): List<Village> {
+    private fun listOfVillages(): List<Village>{
         var list = ArrayList<Village>()
-        list.add(Village(1, "Shodlik"))
+        list.add(Village(1, "Yoshlik"))
         list.add(Village(2, "Shodlik"))
-        list.add(Village(3, "Shodlik"))
-        list.add(Village(4, "Shodlik"))
+        list.add(Village(3, "Miskin"))
+        list.add(Village(4, "Shodiyona"))
         list.add(Village(5, "Shodlik"))
 
         return list

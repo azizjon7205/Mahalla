@@ -50,5 +50,4 @@ class CriteriaAdapter() : ListAdapter<String, CriteriaAdapter.VH>(ITEM_DIFF) {
             }
         }
     }
-
 }

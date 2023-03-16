@@ -1,4 +1,4 @@
-package uz.frankie.mahalla.ui.settings
+package uz.frankie.mahalla.ui.governor.settings
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
