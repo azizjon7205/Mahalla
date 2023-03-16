@@ -52,7 +52,7 @@
             android:id="@+id/user_name"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="@string/username"
+            android:text="xotin_qizlar"
             android:inputType="textLongMessage" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -73,7 +73,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:ems="8"
-            android:hint="@string/password"
+            android:text="fgvhbjnkmcdfjnidcj"
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -85,6 +85,7 @@
         android:backgroundTint="@color/s_dark_blue"
         android:enabled="false"
         android:text="Sign in"
+        android:textColor="@color/white"
         app:cornerRadius="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

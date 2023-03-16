@@ -82,6 +82,10 @@ dependencies {
     //viewPager2
     implementation "androidx.viewpager2:viewpager2:1.0.0"
 
+    //ZoomableImageView
+    implementation("com.otaliastudios:zoomlayout:1.9.0")
+
+
 
     //material
     implementation 'com.google.android.material:material:1.8.0'
