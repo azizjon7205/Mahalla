@@ -28,4 +28,8 @@
     <string name="text_instruction_sign_in">Please enter the Login and Password for your User account!</string>
     <string name="username">Username</string>
     <string name="list_of_villages">Mahallalar ro\'yxati</string>
+
+    <string name="check_your_connection">Serverga ulanib boʻlmadi. Internet aloqangizni tekshiring.</string>
+    <string name="something_is_wrong"> Nimadir noto`g`ri bajarildi. Iltimos keyinroq qayta urinib ko`ring!</string>
+
 </resources>
