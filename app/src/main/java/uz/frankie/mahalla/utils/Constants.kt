@@ -2,6 +2,7 @@ package uz.frankie.mahalla.utils
 
 object Constants {
     const val BASE_URL = "https://cbu.uz/uz/arkhiv-kursov-valyut/json/"
+    const val NOTIF_URL = "https://fcm.googleapis.com"
 
     const val BASIC_USER_NAME_DEBUG = "android"
     const val BASIC_PASSWORD_DEBUG = "d-mobile-android"
