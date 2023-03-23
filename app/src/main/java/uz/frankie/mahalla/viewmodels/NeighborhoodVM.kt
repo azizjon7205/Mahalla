@@ -11,9 +11,10 @@ import kotlinx.coroutines.launch
 import uz.frankie.mahalla.repositories.NeighborhoodRepository
 import uz.frankie.mahalla.utils.NetworkResource
 import uz.frankie.mahalla.viewmodels.state.NeighborhoodState
+import javax.inject.Inject
 
 @HiltViewModel
-class NeighborhoodVM(
+class NeighborhoodVM @Inject constructor(
     private val repository: NeighborhoodRepository
 ) : ViewModel() {
 
