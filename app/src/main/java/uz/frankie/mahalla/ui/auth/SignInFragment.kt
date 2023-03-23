@@ -9,17 +9,25 @@ import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.google.firebase.messaging.FirebaseMessaging
 import uz.frankie.mahalla.MainActivity
 import uz.frankie.mahalla.R
 import uz.frankie.mahalla.databinding.FragmentSignInBinding
+import uz.frankie.mahalla.model.User
 import uz.frankie.mahalla.utils.extentions.activityNavController
 import uz.frankie.mahalla.utils.extentions.navigateSafely
+import uz.frankie.mahalla.utils.logger.Logger
 
 
 class SignInFragment : Fragment(R.layout.fragment_sign_in) {
     private val binding by viewBinding(FragmentSignInBinding::bind)
+    private val role = "hokim"
+    private var token: String? = null
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        loadFCMToken()
 
         val textWatcher = object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
@@ -47,10 +55,32 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
         }
 
         binding.btnSignIn.setOnClickListener {
-            activityNavController().navigateSafely(R.id.action_global_governorFlowFragment)
+            val user = User(id = 1, role = "hokim", name = "Azizjon", token)
+
+            when(role){
+                "hokim" -> {
+                    activityNavController().navigateSafely(R.id.action_global_governorFlowFragment)
+                }
+                "rais" -> activityNavController().navigateSafely(R.id.action_global_villagesFlowFragment)
+            }
+
             Toast.makeText(requireActivity(), "Signed in successfully", Toast.LENGTH_SHORT).show()
         }
 
+    }
+
+    private fun loadFCMToken(){
+        FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
+            if (!task.isSuccessful){
+                Logger.d("@@@@", "Fetching FCM registration token failed")
+                return@addOnCompleteListener
+            }
+            // Get new FCM registration token
+            // Save it in locally to use later
+            token = task.result
+            Logger.d("@@@@", token.toString())
+//            PrefsManager(this).storeDeviceToken(token.toString())
+        }
     }
 
 
