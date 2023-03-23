@@ -1,4 +1,4 @@
-package com.clone.instagramclone.model
+package uz.frankie.mahalla.model
 
 data class FCMResp(
     val canonical_ids: Int,
@@ -9,5 +9,6 @@ data class FCMResp(
 )
 
 data class Result(
-    val message_id: String
+    val message_id: String? = null,
+    val error: String? = null
 )

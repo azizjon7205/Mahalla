@@ -1,6 +1,6 @@
 package uz.frankie.mahalla.network.services
 
-import com.clone.instagramclone.model.FCMResp
+import uz.frankie.mahalla.model.FCMResp
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.Headers

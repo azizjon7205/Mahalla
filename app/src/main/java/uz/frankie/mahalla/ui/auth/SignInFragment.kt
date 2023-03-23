@@ -7,19 +7,26 @@ import android.view.View
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.google.firebase.messaging.FirebaseMessaging
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 import uz.frankie.mahalla.MainActivity
 import uz.frankie.mahalla.R
 import uz.frankie.mahalla.databinding.FragmentSignInBinding
+import uz.frankie.mahalla.model.FCMNote
+import uz.frankie.mahalla.model.Notification
 import uz.frankie.mahalla.model.User
 import uz.frankie.mahalla.utils.extentions.activityNavController
 import uz.frankie.mahalla.utils.extentions.navigateSafely
 import uz.frankie.mahalla.utils.logger.Logger
+import uz.frankie.mahalla.viewmodels.NotificationVM
 
-
+@AndroidEntryPoint
 class SignInFragment : Fragment(R.layout.fragment_sign_in) {
+    private val notifViewModel: NotificationVM by viewModels()
     private val binding by viewBinding(FragmentSignInBinding::bind)
     private val role = "hokim"
     private var token: String? = null
@@ -56,22 +63,30 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
 
         binding.btnSignIn.setOnClickListener {
             val user = User(id = 1, role = "hokim", name = "Azizjon", token)
+            val message = FCMNote(
+                Notification(
+                    title = "Test",
+                    body = "Message Test"
+                ),
+                arrayListOf("cGY5OQWIRnS_alPfqCgn7-:APA91bGj0RCGsHOQU18Sij_LPrirXpP55pBcbJ2k-ka1Fv1HFbGbJ_0Rmo0zhkPxLzW2QO9wDAodh424oFnzioztF_4dzB_1H_v9ovm5bnaHERioTWeQl1vJsFrJME221_HuVKszddvh")
+            )
 
-            when(role){
+            when (role) {
                 "hokim" -> {
                     activityNavController().navigateSafely(R.id.action_global_governorFlowFragment)
                 }
                 "rais" -> activityNavController().navigateSafely(R.id.action_global_villagesFlowFragment)
             }
 
+
             Toast.makeText(requireActivity(), "Signed in successfully", Toast.LENGTH_SHORT).show()
         }
 
     }
 
-    private fun loadFCMToken(){
+    private fun loadFCMToken() {
         FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
-            if (!task.isSuccessful){
+            if (!task.isSuccessful) {
                 Logger.d("@@@@", "Fetching FCM registration token failed")
                 return@addOnCompleteListener
             }
@@ -83,5 +98,8 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
         }
     }
 
+    private fun collectUiState(){
+//        notifViewModel.uiState.collect(viewLifecycleOwner)
+    }
 
 }
