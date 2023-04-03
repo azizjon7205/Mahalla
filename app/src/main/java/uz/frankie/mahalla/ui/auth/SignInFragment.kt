@@ -20,6 +20,7 @@ import uz.frankie.mahalla.model.FCMNote
 import uz.frankie.mahalla.model.Notification
 import uz.frankie.mahalla.model.User
 import uz.frankie.mahalla.utils.extentions.activityNavController
+import uz.frankie.mahalla.utils.extentions.collectLA
 import uz.frankie.mahalla.utils.extentions.navigateSafely
 import uz.frankie.mahalla.utils.logger.Logger
 import uz.frankie.mahalla.viewmodels.NotificationVM
@@ -35,6 +36,7 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
         super.onViewCreated(view, savedInstanceState)
 
         loadFCMToken()
+        collectUiState()
 
         val textWatcher = object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
@@ -70,6 +72,7 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
                 ),
                 arrayListOf("cGY5OQWIRnS_alPfqCgn7-:APA91bGj0RCGsHOQU18Sij_LPrirXpP55pBcbJ2k-ka1Fv1HFbGbJ_0Rmo0zhkPxLzW2QO9wDAodh424oFnzioztF_4dzB_1H_v9ovm5bnaHERioTWeQl1vJsFrJME221_HuVKszddvh")
             )
+            notifViewModel.sendMessage(message)
 
             when (role) {
                 "hokim" -> {
@@ -99,7 +102,11 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
     }
 
     private fun collectUiState(){
-//        notifViewModel.uiState.collect(viewLifecycleOwner)
+        notifViewModel.uiState.collectLA(viewLifecycleOwner){ uiState ->
+            if (uiState.notification != null){
+                Logger.d("@@@", "Notification: ${uiState.notification!!.success}")
+            }
+        }
     }
 
 }

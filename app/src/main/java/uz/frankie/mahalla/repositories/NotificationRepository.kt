@@ -8,13 +8,13 @@ import uz.frankie.mahalla.utils.NetworkResource
 import uz.frankie.mahalla.utils.UiText
 import java.io.IOException
 import javax.inject.Inject
+import javax.inject.Named
 
-class NotificationRepository @Inject constructor(
-    private val notificationService: NotificationService
-) {
+class NotificationRepository @Inject constructor(@Named("notification") private val notificationService: NotificationService) {
+
     suspend fun sendMessage(message: FCMNote): NetworkResource<FCMResp>{
         return try {
-            val response = notificationService.sendNotification(message)
+            val response = notificationService.sendNotification(fcmNote = message)
             if (response.isSuccessful){
                 NetworkResource.Success(response.body())
             } else{

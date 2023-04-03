@@ -5,14 +5,15 @@ import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.Headers
 import retrofit2.http.POST
+import retrofit2.http.Url
 import uz.frankie.mahalla.model.FCMNote
 
 interface NotificationService {
 
     companion object{
-        private const val key = "AAAAh59qCiU:APA91bErCgG4d6XzI6N9wzCUw96Tdk9RTUdSmYqpUCDZGOdpN" +
-                "nN9HX-F-b8M81rhfrIlpDZwcWcbrS4ZQbfExeV3aVLaThDNdGvtCGs8I0W7bIcejsIT0n_kqSKmiqKR86EKooonLHRH"
+        private const val key = "AAAAVmO6KdA:APA91bH-oXaYj2uyp2DdOXZo6Lzs3OAup51uW8lt9IHFgoTpR3tAyqM-FMFd0L9p9eJ2-YkCwuEbovhiel9kWjc3BrOnNboSsnETns7NPzRn40DOjoKYlBmQwSFDNKS8Ny5IvwtbKKDK"
     }
+
 
     @Headers("Authorization: key=$key")
     @POST("/fcm/send")
