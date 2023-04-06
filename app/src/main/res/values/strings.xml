@@ -35,4 +35,6 @@
 
     <string name="check_your_connection">Serverga ulanib boʻlmadi. Internet aloqangizni tekshiring.</string>
     <string name="something_is_wrong"> Nimadir noto`g`ri bajarildi. Iltimos keyinroq qayta urinib ko`ring!</string>
+
+
 </resources>

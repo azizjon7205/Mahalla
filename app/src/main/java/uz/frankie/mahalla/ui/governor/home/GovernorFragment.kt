@@ -10,15 +10,20 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import androidx.fragment.app.Fragment
 import android.view.View
+import androidx.fragment.app.viewModels
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.widget.SearchView
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
+import dagger.hilt.android.AndroidEntryPoint
 import uz.frankie.mahalla.R
 import uz.frankie.mahalla.model.Village
 import uz.frankie.mahalla.adapter.governor.VillagesListAdapter
 import uz.frankie.mahalla.databinding.FragmentGovernorBinding
+import uz.frankie.mahalla.utils.extentions.collectLA
+import uz.frankie.mahalla.viewmodels.NeighborhoodVM
 
+@AndroidEntryPoint
 class GovernorFragment : Fragment(R.layout.fragment_governor), SearchView.OnQueryTextListener {
     private val binding by viewBinding(FragmentGovernorBinding::bind)
     private val adapterVillages by lazy { VillagesListAdapter() }
@@ -27,6 +32,7 @@ class GovernorFragment : Fragment(R.layout.fragment_governor), SearchView.OnQuer
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
+    private val neighborhoodVM: NeighborhoodVM by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -64,49 +70,27 @@ class GovernorFragment : Fragment(R.layout.fragment_governor), SearchView.OnQuer
 
 
         }
+
+        neighborhoodVM.getNeighborhoodList()
+        collectUiState()
     }
 
-//    @Deprecated("Deprecated in Java")
-//    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-//        super.onCreateOptionsMenu(menu, inflater)
-//
-//        inflater.inflate(R.menu.menu_search, menu)
-//        val searchMenuItem = menu.findItem(R.id.search_menu_item)
-//        val searchView = searchMenuItem.actionView as SearchView
-//        val filter = adapterVillages.filter
-//
-//        Log.d("@@@", "SEARCHV: $")
-//        // Set up the search functionality
-//        searchView.setOnQueryTextListener(this)
-//
-//
-//        // Set up the search icon animation
-//        searchMenuItem.setOnActionExpandListener(object : MenuItem.OnActionExpandListener {
-//            @SuppressLint("ObjectAnimatorBinding")
-//            override fun onMenuItemActionExpand(item: MenuItem): Boolean {
-//                val icon = searchMenuItem.icon
-//                val iconWidth = icon!!.intrinsicWidth
-//                val anim = ObjectAnimator.ofFloat(icon, "translationX", -iconWidth.toFloat())
-//                anim.duration = 250
-//                anim.start()
-//                return true
-//            }
-//
-//            @SuppressLint("ObjectAnimatorBinding")
-//            override fun onMenuItemActionCollapse(item: MenuItem): Boolean {
-//                val icon = searchMenuItem.icon
-//                val anim = ObjectAnimator.ofFloat(icon, "translationX", 0f)
-//                anim.duration = 250
-//                anim.start()
-//                return true
-//            }
-//        })
-//
-////        return true
-//    }
+    private fun collectUiState() {
+        neighborhoodVM.uiState.collectLA(viewLifecycleOwner) { uiState ->
+            if (uiState.neighborhoodList.isNotEmpty()) {
+                // set data Adapter or UI
+                val list = uiState.neighborhoodList
+            }
+
+            if (uiState.isLoading) {
+                val loaderDialog = true  // loaderDialog show
+            } else {
+                val loaderDialog = false  // loaderDialog dismiss
+            }
+        }
+    }
 
     private fun listOfVillages(){
-
         list.add(Village(1, "Yoshlik"))
         list.add(Village(2, "Shodlik"))
         list.add(Village(3, "Miskin"))

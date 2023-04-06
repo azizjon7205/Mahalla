@@ -15,6 +15,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import uz.frankie.mahalla.BuildConfig
+import uz.frankie.mahalla.network.services.NeighborhoodService
 import uz.frankie.mahalla.network.services.CurrencyService
 import uz.frankie.mahalla.network.services.GovernorService
 import uz.frankie.mahalla.network.services.NotificationService
@@ -37,8 +38,8 @@ class NetworkModule {
     }
 
     @[Provides Singleton]
-    fun provideNetworkService(retrofit: Retrofit): CurrencyService {
-        return retrofit.create(CurrencyService::class.java)
+    fun provideNeighborhoodService(retrofit: Retrofit): NeighborhoodService {
+        return retrofit.create(NeighborhoodService::class.java)
     }
 
     @[Provides Singleton]
