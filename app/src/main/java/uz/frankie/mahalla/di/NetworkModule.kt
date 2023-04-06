@@ -16,7 +16,6 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import uz.frankie.mahalla.BuildConfig
 import uz.frankie.mahalla.network.services.NeighborhoodService
-import uz.frankie.mahalla.network.services.CurrencyService
 import uz.frankie.mahalla.network.services.GovernorService
 import uz.frankie.mahalla.network.services.NotificationService
 import uz.frankie.mahalla.utils.Constants

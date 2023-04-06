@@ -1,13 +1,8 @@
 package uz.frankie.mahalla.ui.governor.home
 
-import android.animation.ObjectAnimator
-import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
 import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.fragment.app.viewModels
@@ -28,10 +23,6 @@ class GovernorFragment : Fragment(R.layout.fragment_governor), SearchView.OnQuer
     private val binding by viewBinding(FragmentGovernorBinding::bind)
     private val adapterVillages by lazy { VillagesListAdapter() }
     private var list = ArrayList<Village>()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
     private val neighborhoodVM: NeighborhoodVM by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

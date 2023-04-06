@@ -52,8 +52,9 @@
             android:id="@+id/user_name"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="xotin_qizlar"
-            android:inputType="textLongMessage" />
+            android:text=""
+            android:hint="Telefon raqam"
+            android:inputType="phone" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -73,7 +74,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:ems="8"
-            android:text="fgvhbjnkmcdfjnidcj"
+            android:text=""
+            android:hint="Parol"
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
