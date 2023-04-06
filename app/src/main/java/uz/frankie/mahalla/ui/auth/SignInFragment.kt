@@ -17,20 +17,26 @@ import uz.frankie.mahalla.MainActivity
 import uz.frankie.mahalla.R
 import uz.frankie.mahalla.databinding.FragmentSignInBinding
 import uz.frankie.mahalla.model.FCMNote
+import uz.frankie.mahalla.model.LoginRequest
 import uz.frankie.mahalla.model.Notification
 import uz.frankie.mahalla.model.User
 import uz.frankie.mahalla.utils.extentions.activityNavController
 import uz.frankie.mahalla.utils.extentions.collectLA
+import uz.frankie.mahalla.utils.extentions.getJson
 import uz.frankie.mahalla.utils.extentions.navigateSafely
 import uz.frankie.mahalla.utils.logger.Logger
+import uz.frankie.mahalla.viewmodels.AuthViewModel
 import uz.frankie.mahalla.viewmodels.NotificationVM
+import kotlin.math.log
 
 @AndroidEntryPoint
 class SignInFragment : Fragment(R.layout.fragment_sign_in) {
     private val notifViewModel: NotificationVM by viewModels()
+    private val authViewModel: AuthViewModel by viewModels()
     private val binding by viewBinding(FragmentSignInBinding::bind)
     private val role = "hokim"
     private var token: String? = null
+    private var loginRequest: LoginRequest? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -74,13 +80,10 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
             )
             notifViewModel.sendMessage(message)
 
-            when (role) {
-                "hokim" -> {
-                    activityNavController().navigateSafely(R.id.action_global_governorFlowFragment)
-                }
-                "rais" -> activityNavController().navigateSafely(R.id.action_global_villagesFlowFragment)
-            }
+            loginRequest = LoginRequest(binding.userName.text.toString(), binding.passwordEt.text.toString(), token.toString() + "w")
 
+            Logger.d("@@@", "Login data: ${loginRequest}")
+            authViewModel.login(loginRequest!!)
 
             Toast.makeText(requireActivity(), "Signed in successfully", Toast.LENGTH_SHORT).show()
         }
@@ -106,6 +109,21 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
             if (uiState.notification != null){
                 Logger.d("@@@", "Notification: ${uiState.notification!!.success}")
             }
+        }
+
+        authViewModel.uiState.collectLA(viewLifecycleOwner){ uiState ->
+            if (uiState.data != null){
+                val loginResponse = uiState.data
+                Logger.d("@@@", "Login Success data: ${loginResponse}")
+                Logger.d("@@@", "Login Success data: ${getJson(loginResponse.access.split(".")[1])}")
+                when (role) {
+                    "hokim" -> {
+                        activityNavController().navigateSafely(R.id.action_global_governorFlowFragment)
+                    }
+                    "rais" -> activityNavController().navigateSafely(R.id.action_global_villagesFlowFragment)
+                }
+            }
+            Logger.d("@@@", "Login Error ${uiState.errorMessage}")
         }
     }
 

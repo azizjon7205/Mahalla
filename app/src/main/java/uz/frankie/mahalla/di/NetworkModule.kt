@@ -16,6 +16,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import uz.frankie.mahalla.BuildConfig
 import uz.frankie.mahalla.network.services.CurrencyService
+import uz.frankie.mahalla.network.services.GovernorService
 import uz.frankie.mahalla.network.services.NotificationService
 import uz.frankie.mahalla.utils.Constants
 import uz.frankie.mahalla.utils.SharedPreferenceHelper
@@ -30,15 +31,19 @@ class NetworkModule {
     @[Provides Singleton]
     fun provideRetrofitInstance(client: OkHttpClient): Retrofit {
         return Retrofit.Builder().baseUrl(Constants.BASE_URL)
-            .client(client)
+//            .client(client)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
 
     @[Provides Singleton]
-    @Named("usual")
     fun provideNetworkService(retrofit: Retrofit): CurrencyService {
         return retrofit.create(CurrencyService::class.java)
+    }
+
+    @[Provides Singleton]
+    fun provideGovernorService(retrofit: Retrofit): GovernorService {
+        return retrofit.create(GovernorService::class.java)
     }
 
     @[Provides Singleton]
