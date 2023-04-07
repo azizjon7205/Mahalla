@@ -42,11 +42,7 @@ class TaskFragment : Fragment(R.layout.fragment_task) {
             val tabNames = listOf("Mahallalarga", "O'zimga")
             tab.text = tabNames[position]
         }.attach()
-
-
     }
-
-
 
 }
 class ParentFragmentPagerAdapter(

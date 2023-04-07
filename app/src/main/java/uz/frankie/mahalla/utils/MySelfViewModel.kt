@@ -5,7 +5,7 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import uz.frankie.mahalla.data.entity.MyselfData
 
-class MyViewModel(private val repository: MyRepository) : ViewModel() {
+class MySelfViewModel(private val repository: MySelfRepository) : ViewModel() {
 
     fun insertMyData(myData: MyselfData) {
         viewModelScope.launch {

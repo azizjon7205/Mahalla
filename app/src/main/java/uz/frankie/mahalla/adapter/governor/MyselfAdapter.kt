@@ -11,34 +11,30 @@ import uz.frankie.mahalla.R
 import uz.frankie.mahalla.data.entity.MyselfData
 
 
-class MyselfAdapter : ListAdapter<MyselfData, MyDataViewHolder>(MyselfDataDiffCallback()) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyDataViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_my_self, parent, false)
-        return MyDataViewHolder(view)
+class MyselfAdapter(private val itemList: List<MyselfData>) :
+    RecyclerView.Adapter<MyselfAdapter.ViewHolder>() {
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.item_my_self, parent, false)
+        return ViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: MyDataViewHolder, position: Int) {
-        holder.bind(getItem(position))
-    }
-}
-
-class MyDataViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
-    fun bind(myData: MyselfData) {
-        itemView.findViewById<TextView>(R.id.edt_write).text = myData.name
-        itemView.findViewById<TextView>(R.id.tv_date).text = myData.date
-        itemView.findViewById<TextView>(R.id.tv_time).text = myData.time
-    }
-}
-
-class MyselfDataDiffCallback : DiffUtil.ItemCallback<MyselfData>() {
-
-    override fun areItemsTheSame(oldItem: MyselfData, newItem: MyselfData): Boolean {
-        return oldItem.id == newItem.id
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val item = itemList[position]
+        holder.nameTextView.text = item.text
+        holder.dateTextView.text = item.date
+        holder.timeTextView.text = item.time
     }
 
-    override fun areContentsTheSame(oldItem: MyselfData, newItem: MyselfData): Boolean {
-        return oldItem == newItem
+    override fun getItemCount(): Int {
+        return itemList.size
+    }
+
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val nameTextView: TextView = itemView.findViewById(R.id.edt_write)
+        val dateTextView: TextView = itemView.findViewById(R.id.tv_date)
+        val timeTextView: TextView = itemView.findViewById(R.id.tv_time)
     }
 }

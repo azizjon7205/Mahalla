@@ -10,13 +10,13 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import uz.frankie.mahalla.R
 import uz.frankie.mahalla.data.entity.MyselfData
 import uz.frankie.mahalla.databinding.AddInfoToMyselfBinding
-import uz.frankie.mahalla.utils.MyViewModel
+import uz.frankie.mahalla.utils.MySelfViewModel
 import java.util.*
 
 class AddInfoToMyselfScreen : Fragment(R.layout.add_info_to_myself) {
 
     private val binding by viewBinding(AddInfoToMyselfBinding::bind)
-    private val viewModel: MyViewModel by viewModels()
+    private val viewModel: MySelfViewModel by viewModels()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -42,7 +42,7 @@ class AddInfoToMyselfScreen : Fragment(R.layout.add_info_to_myself) {
         binding.tvDate.setOnClickListener {
             showDatePicker()
         }
-        val myData = MyselfData(name = info, date = date, time = time)
+        val myData = MyselfData(text = info, date = date, time = time)
         viewModel.insertMyData(myData)
     }
 

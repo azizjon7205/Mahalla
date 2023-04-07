@@ -13,17 +13,20 @@ import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import by.kirich1409.viewbindingdelegate.viewBinding
 import uz.frankie.mahalla.R
 import uz.frankie.mahalla.adapter.governor.MyselfAdapter
+import uz.frankie.mahalla.data.entity.MyselfData
 import uz.frankie.mahalla.databinding.ScreenMyselfBinding
 import java.util.*
 
 class MyselfScreen : Fragment(R.layout.screen_myself) {
 
-    private lateinit var rvMyData: RecyclerView
-    private lateinit var myDataAdapter: MyselfAdapter
+    private lateinit var recyclerMyself: RecyclerView
+    private lateinit var myselfAdapter: MyselfAdapter
+    private lateinit var itemList: MutableList<MyselfData> // replace Item with your data class
     private val binding by viewBinding(ScreenMyselfBinding::bind)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -33,13 +36,16 @@ class MyselfScreen : Fragment(R.layout.screen_myself) {
 
     private fun initView() {
         binding.apply {
-            rvMyData = rvMyself
+            recyclerMyself = rvMyself
+            recyclerMyself.layoutManager=LinearLayoutManager(requireContext())
+            itemList = mutableListOf()
+            myselfAdapter =MyselfAdapter(itemList)
+            recyclerMyself.adapter=myselfAdapter
             floatingBtn.setOnClickListener {
                 tvInfo.visibility = View.GONE
-                findNavController().navigate(R.id.addInfoToMyselfScreen)
+                ivEmpty.visibility = View.GONE
+                rvMyself.visibility = View.VISIBLE
             }
         }
-        myDataAdapter = MyselfAdapter()
-        rvMyData.adapter = myDataAdapter
     }
 }

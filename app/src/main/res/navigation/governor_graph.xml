@@ -72,7 +72,11 @@
         android:id="@+id/myselfScreen"
         android:name="uz.frankie.mahalla.ui.governor.task.MyselfScreen"
         android:label="MyselfScreen"
-        tools:layout="@layout/screen_myself"/>
+        tools:layout="@layout/screen_myself">
+        <action
+            android:id="@+id/action_myselfScreen_to_addInfoToMyselfScreen"
+            app:destination="@id/addInfoToMyselfScreen" />
+    </fragment>
     <fragment
         android:id="@+id/toTownScreen"
         android:name="uz.frankie.mahalla.ui.governor.task.ToTownScreen"
