@@ -4,10 +4,14 @@ import android.content.Context
 import androidx.core.content.edit
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKey
+import dagger.hilt.android.qualifiers.ApplicationContext
 import uz.frankie.mahalla.utils.Constants.APP_PREFS_NAME
 import uz.frankie.mahalla.utils.Constants.PREF_ACCESS_TOKEN
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class SharedPreferenceHelper(context: Context) {
+@Singleton
+class SharedPreferenceHelper @Inject constructor(@ApplicationContext val context: Context) {
 
     private val masterKey by lazy {
         MasterKey.Builder(context).setKeyScheme(MasterKey.KeyScheme.AES256_GCM).build()

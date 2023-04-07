@@ -3,14 +3,22 @@ package uz.frankie.mahalla.adapter.governor
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Filter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import uz.frankie.mahalla.databinding.ItemVellagesBinding
 import uz.frankie.mahalla.model.Village
+import java.util.*
 
 class VillagesListAdapter: ListAdapter<Village, VillagesListAdapter.ViewHolder>(ITEM_DIFF) {
     var onClick: ((Village) -> Unit)? = null
+    var list = listOf<Village>()
+
+    fun submit(items: List<Village>){
+        list = items
+        submitList(items)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -45,6 +53,50 @@ class VillagesListAdapter: ListAdapter<Village, VillagesListAdapter.ViewHolder>(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind()
+    }
+
+    fun performFiltering(constraint: CharSequence?) {
+        val filteredList = mutableListOf<Village>()
+
+        if (constraint.isNullOrEmpty()) {
+            filteredList.addAll(list)
+        } else {
+            val query = constraint.toString().toLowerCase(Locale.getDefault())
+            for (item in list) {
+                if (item.name.toLowerCase(Locale.getDefault()).contains(query)) {
+                    filteredList.add(item)
+                }
+            }
+        }
+
+        submitList(filteredList)
+    }
+
+    val filter = object: Filter(){
+        override fun performFiltering(constraint: CharSequence?): FilterResults {
+            val filteredList = mutableListOf<Village>()
+
+            if (constraint.isNullOrEmpty()) {
+                filteredList.addAll(list)
+            } else {
+                val query = constraint.toString().toLowerCase(Locale.getDefault())
+                for (item in list) {
+                    if (item.name.toLowerCase(Locale.getDefault()).contains(query)) {
+                        filteredList.add(item)
+                    }
+                }
+            }
+
+            val results = FilterResults()
+            results.values = filteredList
+            return results
+        }
+
+        override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
+
+            submitList(results?.values as MutableList<Village>)
+        }
+
     }
 
 }

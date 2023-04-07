@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/villlage_graph.xml">
-
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/villlage_graph.xml"
+    app:startDestination="@id/villageFragment">
+    <fragment
+        android:id="@+id/villageFragment"
+        android:name="uz.frankie.mahalla.ui.villages.VillageFragment"
+        android:label="fragment_village"
+        tools:layout="@layout/fragment_village" >
+        <action
+            android:id="@+id/action_villageFragment_to_governorAssistantFragment2"
+            app:destination="@id/governorAssistantFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/governorAssistantFragment2"
+        android:name="uz.frankie.mahalla.ui.governor_assistant.main.GovernorAssistantFragment"
+        android:label="fragment_governor_assistant"
+        tools:layout="@layout/fragment_governor_assistant" />
 </navigation>

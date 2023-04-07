@@ -15,10 +15,13 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import uz.frankie.mahalla.BuildConfig
-import uz.frankie.mahalla.network.services.CurrencyService
+import uz.frankie.mahalla.network.services.NeighborhoodService
+import uz.frankie.mahalla.network.services.GovernorService
+import uz.frankie.mahalla.network.services.NotificationService
 import uz.frankie.mahalla.utils.Constants
 import uz.frankie.mahalla.utils.SharedPreferenceHelper
 import java.util.concurrent.TimeUnit
+import javax.inject.Named
 import javax.inject.Singleton
 
 @Module
@@ -27,18 +30,33 @@ class NetworkModule {
 
     @[Provides Singleton]
     fun provideRetrofitInstance(client: OkHttpClient): Retrofit {
-        return Retrofit.Builder().baseUrl(Constants.BASE_URL).client(client)
-            .addConverterFactory(
-                GsonConverterFactory.create(
-                    GsonBuilder().serializeNulls().setLenient().create()
-                )
-            ).build()
+        return Retrofit.Builder().baseUrl(Constants.BASE_URL)
+//            .client(client)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
     }
 
     @[Provides Singleton]
-    fun provideNetworkService(retrofit: Retrofit): CurrencyService {
-        return retrofit.create(CurrencyService::class.java)
+    fun provideNeighborhoodService(retrofit: Retrofit): NeighborhoodService {
+        return retrofit.create(NeighborhoodService::class.java)
     }
+
+    @[Provides Singleton]
+    fun provideGovernorService(retrofit: Retrofit): GovernorService {
+        return retrofit.create(GovernorService::class.java)
+    }
+
+    @[Provides Singleton]
+    @Named("notification")
+    fun provideNotificationService(): NotificationService {
+        return Retrofit.Builder()
+                .baseUrl("https://fcm.googleapis.com/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+                .create(NotificationService::class.java)
+
+    }
+
 
     @Singleton
     @Provides
