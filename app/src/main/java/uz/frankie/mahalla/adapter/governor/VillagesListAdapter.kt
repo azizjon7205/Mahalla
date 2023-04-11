@@ -8,14 +8,14 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import uz.frankie.mahalla.databinding.ItemVellagesBinding
-import uz.frankie.mahalla.model.Village
+import uz.frankie.mahalla.model.Neighborhood
 import java.util.*
 
-class VillagesListAdapter: ListAdapter<Village, VillagesListAdapter.ViewHolder>(ITEM_DIFF) {
-    var onClick: ((Village) -> Unit)? = null
-    var list = listOf<Village>()
+class VillagesListAdapter: ListAdapter<Neighborhood, VillagesListAdapter.ViewHolder>(ITEM_DIFF) {
+    var onClick: ((Neighborhood) -> Unit)? = null
+    var list = listOf<Neighborhood>()
 
-    fun submit(items: List<Village>){
+    fun submit(items: List<Neighborhood>){
         list = items
         submitList(items)
     }
@@ -33,7 +33,7 @@ class VillagesListAdapter: ListAdapter<Village, VillagesListAdapter.ViewHolder>(
         fun bind() {
             val village = getItem(adapterPosition)
             with(binding) {
-                tvMahalla.text = village.name + " mahallasi"
+                tvMahalla.text = village.name
                 root.setOnClickListener {
                     onClick?.invoke(village)
                 }
@@ -42,11 +42,11 @@ class VillagesListAdapter: ListAdapter<Village, VillagesListAdapter.ViewHolder>(
     }
 
     companion object {
-        private val ITEM_DIFF = object : DiffUtil.ItemCallback<Village>() {
-            override fun areItemsTheSame(oldItem: Village, newItem: Village): Boolean =
+        private val ITEM_DIFF = object : DiffUtil.ItemCallback<Neighborhood>() {
+            override fun areItemsTheSame(oldItem: Neighborhood, newItem: Neighborhood): Boolean =
                 oldItem.id == newItem.id
 
-            override fun areContentsTheSame(oldItem: Village, newItem: Village): Boolean =
+            override fun areContentsTheSame(oldItem: Neighborhood, newItem: Neighborhood): Boolean =
                 oldItem == newItem
         }
     }
@@ -56,7 +56,7 @@ class VillagesListAdapter: ListAdapter<Village, VillagesListAdapter.ViewHolder>(
     }
 
     fun performFiltering(constraint: CharSequence?) {
-        val filteredList = mutableListOf<Village>()
+        val filteredList = mutableListOf<Neighborhood>()
 
         if (constraint.isNullOrEmpty()) {
             filteredList.addAll(list)
@@ -74,7 +74,7 @@ class VillagesListAdapter: ListAdapter<Village, VillagesListAdapter.ViewHolder>(
 
     val filter = object: Filter(){
         override fun performFiltering(constraint: CharSequence?): FilterResults {
-            val filteredList = mutableListOf<Village>()
+            val filteredList = mutableListOf<Neighborhood>()
 
             if (constraint.isNullOrEmpty()) {
                 filteredList.addAll(list)
@@ -94,7 +94,7 @@ class VillagesListAdapter: ListAdapter<Village, VillagesListAdapter.ViewHolder>(
 
         override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
 
-            submitList(results?.values as MutableList<Village>)
+            submitList(results?.values as MutableList<Neighborhood>)
         }
 
     }

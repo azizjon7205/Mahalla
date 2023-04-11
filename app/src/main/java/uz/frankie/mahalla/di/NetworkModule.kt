@@ -31,7 +31,7 @@ class NetworkModule {
     @[Provides Singleton]
     fun provideRetrofitInstance(client: OkHttpClient): Retrofit {
         return Retrofit.Builder().baseUrl(Constants.BASE_URL)
-//            .client(client)
+            .client(client)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
@@ -57,7 +57,6 @@ class NetworkModule {
 
     }
 
-
     @Singleton
     @Provides
     fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor {
@@ -81,14 +80,13 @@ class NetworkModule {
             .connectTimeout(2, TimeUnit.MINUTES).writeTimeout(2, TimeUnit.MINUTES)
             .callTimeout(2, TimeUnit.MINUTES).addInterceptor { chain ->
                 val request = chain.request()
-                val credentials: String =
-                    Constants.BASIC_USER_NAME_DEBUG + ":" + Constants.BASIC_PASSWORD_DEBUG
-                val basic =
-                    "Basic " + Base64.encodeToString(credentials.toByteArray(), Base64.NO_WRAP)
-                val newRequest = if (shared.getAccessToken()!! == "empty" || shared.getAccessToken() == "") request.newBuilder()
-                    .addHeader("Authorization", basic)
+//                val credentials: String =
+//                    Constants.BASIC_USER_NAME_DEBUG + ":" + Constants.BASIC_PASSWORD_DEBUG
+//                val basic =
+//                    "Basic " + Base64.encodeToString(credentials.toByteArray(), Base64.NO_WRAP)
+                val newRequest = if (shared.getAccessToken()!! != "empty") request.newBuilder()
+                    .addHeader("Authorization", "${shared.getAccessToken()}")
                 else request.newBuilder()
-                    .header("Authorization", "Bearer ${shared.getAccessToken()}")
                 chain.proceed(newRequest.build()).also {
                     if (it.code == 401) {
                         Handler(Looper.getMainLooper()).post { shared.setAccessToken("empty") }

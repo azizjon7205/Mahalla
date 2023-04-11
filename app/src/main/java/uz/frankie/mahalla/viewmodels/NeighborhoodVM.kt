@@ -8,9 +8,11 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import uz.frankie.mahalla.model.Neighborhood
 import uz.frankie.mahalla.repositories.NeighborhoodRepository
 import uz.frankie.mahalla.utils.NetworkResource
 import uz.frankie.mahalla.viewmodels.state.NeighborhoodState
+import uz.frankie.mahalla.viewmodels.state.NetworkStateList
 import javax.inject.Inject
 
 @HiltViewModel
@@ -20,7 +22,7 @@ class NeighborhoodVM @Inject constructor(
 
     private var neighborhoodJob: Job? = null
 
-    private val _uiState = MutableStateFlow(NeighborhoodState())
+    private val _uiState = MutableStateFlow(NetworkStateList<Neighborhood>())
     val uiState = _uiState.asStateFlow()
 
     fun getNeighborhoodList(){
@@ -29,7 +31,7 @@ class NeighborhoodVM @Inject constructor(
             _uiState.update { it.copy(isLoading = true) }
             when(val result = repository.getNeighborhoodList()){
                 is NetworkResource.Success ->{
-                    _uiState.update { it.copy(neighborhoodList = result.data!!, isLoading = false) }
+                    _uiState.update { it.copy(data = result.data!!, isLoading = false) }
                 }
                 is NetworkResource.Error ->{
                     _uiState.update { it.copy(errorMessage = result.uiText.toString(), isLoading = false) }

@@ -12,11 +12,12 @@ import uz.frankie.mahalla.model.LoginRequest
 import uz.frankie.mahalla.model.LoginResponse
 import uz.frankie.mahalla.repositories.AuthRepository
 import uz.frankie.mahalla.utils.NetworkResource
+import uz.frankie.mahalla.utils.SharedPreferenceHelper
 import uz.frankie.mahalla.viewmodels.state.NetworkState
 import javax.inject.Inject
 
 @HiltViewModel
-class AuthViewModel @Inject constructor(private val authRepository: AuthRepository): ViewModel() {
+class AuthViewModel @Inject constructor(private val authRepository: AuthRepository, private val sharedPreferenceHelper: SharedPreferenceHelper): ViewModel() {
 
     private var authJob: Job? = null
 
@@ -30,6 +31,7 @@ class AuthViewModel @Inject constructor(private val authRepository: AuthReposito
             when(val result = authRepository.login(loginRequest)){
                 is NetworkResource.Success -> {
                     _uiState.update { it.copy(data = result.data!!, isLoading = false) }
+                    sharedPreferenceHelper.setAccessToken(result.data!!.access)
                 }
                 is NetworkResource.Error -> {
                     _uiState.update { it.copy(errorMessage = result.uiText.toString(), isLoading = false) }

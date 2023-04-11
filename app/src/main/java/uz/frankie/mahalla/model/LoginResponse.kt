@@ -5,5 +5,6 @@ data class LoginResponse(
     val id: String,
     val access: String,
     val refresh: String,
+    val role: String,
     val message: String
 )

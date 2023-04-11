@@ -25,15 +25,21 @@ class GovernorFragment : Fragment(R.layout.fragment_governor), SearchView.OnQuer
     private var list = ArrayList<Village>()
     private val neighborhoodVM: NeighborhoodVM by viewModels()
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        neighborhoodVM.getNeighborhoodList()
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         listOfVillages()
         initViews()
+        collectUiState()
     }
 
     private fun initViews() {
-        adapterVillages.submit(list)
         adapterVillages.onClick = {
             findNavController().navigate(R.id.action_governorFragment_to_villagesFragment)
         }
@@ -62,15 +68,16 @@ class GovernorFragment : Fragment(R.layout.fragment_governor), SearchView.OnQuer
 
         }
 
-        neighborhoodVM.getNeighborhoodList()
-        collectUiState()
     }
 
     private fun collectUiState() {
         neighborhoodVM.uiState.collectLA(viewLifecycleOwner) { uiState ->
-            if (uiState.neighborhoodList.isNotEmpty()) {
+            binding.flLoading.visibility = if (uiState.isLoading) View.VISIBLE else View.GONE
+            if (uiState.data.isNotEmpty()) {
                 // set data Adapter or UI
-                val list = uiState.neighborhoodList
+                val list = uiState.data
+                Log.d("@@@", "Villages list: ${list}")
+                adapterVillages.submit(uiState.data)
             }
 
             if (uiState.isLoading) {
@@ -78,6 +85,8 @@ class GovernorFragment : Fragment(R.layout.fragment_governor), SearchView.OnQuer
             } else {
                 val loaderDialog = false  // loaderDialog dismiss
             }
+
+            Log.d("@@@", "Villages list: ${uiState.errorMessage}")
         }
     }
 

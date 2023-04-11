@@ -6,13 +6,21 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import com.google.firebase.messaging.FirebaseMessaging
+import dagger.hilt.android.AndroidEntryPoint
 import uz.frankie.mahalla.R
 import uz.frankie.mahalla.utils.extentions.activityNavController
+import uz.frankie.mahalla.utils.extentions.collectLA
 import uz.frankie.mahalla.utils.extentions.navigateSafely
 import uz.frankie.mahalla.utils.logger.Logger
+import uz.frankie.mahalla.viewmodels.SplashViewModel
 
+@AndroidEntryPoint
 class SplashFragment : Fragment(R.layout.fragment_splash) {
+
+    private val splashViewModel: SplashViewModel by viewModels()
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -25,7 +33,8 @@ class SplashFragment : Fragment(R.layout.fragment_splash) {
             override fun onTick(millisUntilFinished: Long) { }
 
             override fun onFinish() {
-                activityNavController().navigateSafely(R.id.action_global_authFlowFragment)
+                splashViewModel.navigateToNext()
+                collectUiState()
             }
         }.start()
     }
@@ -41,6 +50,16 @@ class SplashFragment : Fragment(R.layout.fragment_splash) {
             val token = task.result
             Logger.d("@@@@", token.toString())
 //            PrefsManager(this).storeDeviceToken(token.toString())
+        }
+    }
+
+    private fun collectUiState(){
+        splashViewModel.uiState.collectLA(viewLifecycleOwner){ uiState ->
+            if (uiState.data!!){
+                activityNavController().navigateSafely(R.id.action_global_authFlowFragment)
+            } else {
+                activityNavController().navigateSafely(R.id.action_global_governorFlowFragment)
+            }
         }
     }
 
