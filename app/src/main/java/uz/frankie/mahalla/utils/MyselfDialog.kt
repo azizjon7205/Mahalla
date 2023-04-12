@@ -2,46 +2,43 @@ package uz.frankie.mahalla.utils
 
 import android.app.AlertDialog
 import android.app.DatePickerDialog
-import android.app.Dialog
 import android.app.TimePickerDialog
-import android.os.Bundle
-import android.widget.EditText
-import android.widget.TextView
-import androidx.fragment.app.DialogFragment
-import uz.frankie.mahalla.R
-import uz.frankie.mahalla.data.MyDatabase
+import android.content.Context
+import android.view.LayoutInflater
 import uz.frankie.mahalla.data.entity.MyselfData
+import uz.frankie.mahalla.databinding.DialogAddTaskToMyselfBinding
 import java.util.*
 
+class MyselfDialog(context: Context) : AlertDialog(context) {
 
-class MyselfDialog : DialogFragment() {
+    val binding = DialogAddTaskToMyselfBinding.inflate(LayoutInflater.from(context))
 
-    private lateinit var editText: EditText
-    private lateinit var textView1: TextView
-    private lateinit var textView2: TextView
-
-    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val builder = AlertDialog.Builder(requireContext())
-
-        val inflater = requireActivity().layoutInflater
-        val view = inflater.inflate(R.layout.add_info_to_myself, null)
-
-        editText = view.findViewById(R.id.edt_write)
-        textView1 = view.findViewById(R.id.tv_date)
-        textView1.setOnClickListener { showDatePicker() }
-        textView2 = view.findViewById(R.id.tv_time)
-        textView2.setOnClickListener { showTimePicker() }
-
-        builder.setView(view)
-            .setTitle("My Dialog")
-            .setPositiveButton("Save") { _, _ ->
-//                saveDataToDatabase()
-            }
-            .setNegativeButton("Cancel", null)
-
-        return builder.create()
+    private var createTask: ((MyselfData) -> Unit)? = null
+    fun setOnCreateTaskListener(f: (item: MyselfData) -> Unit) {
+        createTask = f
     }
 
+    init {
+        window?.setBackgroundDrawableResource(android.R.color.transparent)
+        setCancelable(false)
+
+        binding.apply {
+            llDate.setOnClickListener { showDatePicker() }
+            llTime.setOnClickListener { showTimePicker() }
+            btnSave.setOnClickListener {
+                createTask?.invoke(
+                    MyselfData(
+                        text = edtWrite.text.toString(),
+                        date = tvDate.text.toString(),
+                        time = tvTime.text.toString()
+                    )
+                )
+                dismiss()
+            }
+        }
+
+        setView(binding.root)
+    }
 
     private fun showDatePicker() {
         val calendar = Calendar.getInstance()
@@ -50,10 +47,10 @@ class MyselfDialog : DialogFragment() {
         val day = calendar.get(Calendar.DAY_OF_MONTH)
 
         val datePickerDialog = DatePickerDialog(
-            requireContext(),
+            binding.root.context,
             { _, yearSelected, monthSelected, daySelected ->
                 val selectedDate = "${monthSelected + 1}/$daySelected/$yearSelected"
-                textView1.text = selectedDate
+                binding.tvDate.text = selectedDate
             },
             year,
             month,
@@ -69,10 +66,11 @@ class MyselfDialog : DialogFragment() {
         val minute = calendar.get(Calendar.MINUTE)
 
         val timePickerDialog = TimePickerDialog(
-            requireContext(),
+            binding.root.context,
             { _, hourOfDay, minute ->
-                val selectedTime = "${hourOfDay.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}"
-                textView2.text = selectedTime
+                val selectedTime =
+                    "${hourOfDay.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}"
+                binding.tvTime.text = selectedTime
             },
             hour,
             minute,
@@ -82,21 +80,4 @@ class MyselfDialog : DialogFragment() {
         timePickerDialog.show()
     }
 
-
-
-    private suspend fun saveDataToDatabase() {
-        val itemName = editText.text.toString()
-        val date = textView1.text.toString()
-        val time = textView2.text.toString()
-
-        val item = MyselfData(text = itemName, date = date, time = time)
-        val dao = MyDatabase.getInstance(requireContext()).itemDao()
-        dao.insertItem(item)
-
-        // update the RecyclerView with the new item
-//        itemList.add(item)
-//        recyclerViewAdapter.notifyItemInserted(itemList.size - 1)
-
-        dismiss() // close the dialog
-    }
 }

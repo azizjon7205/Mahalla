@@ -3,35 +3,33 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="#F9FAFE">
 
-    <LinearLayout
-        android:id="@+id/ll_write"
+    <EditText
+        android:id="@+id/edt_write"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
+        android:paddingHorizontal="16dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="8dp"
+        android:minHeight="200dp"
+        android:maxHeight="360dp"
+        android:gravity="start"
+        app:layout_constraintTop_toTopOf="parent"
         android:background="@drawable/bg_dimens_coprner_10_white"
-        android:orientation="vertical"
-        app:layout_constraintTop_toTopOf="parent">
-
-
-        <uz.frankie.mahalla.utils.CustomEditText
-            android:id="@+id/edt_write"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="8dp"
-            android:background="@color/white"
-            android:filterTouchesWhenObscured="true"
-            android:hint="Description"
-            android:scrollbars="vertical"
-            android:textColor="@color/s_dark_blue_text"
-            android:textColorHighlight="@color/s_button_blue"
-            android:textColorHint="#330D0D0D"
-            android:textSize="16sp" />
-    </LinearLayout>
+        android:filterTouchesWhenObscured="true"
+        android:hint="Enter task"
+        android:scrollbars="vertical"
+        android:textColor="@color/s_dark_blue_text"
+        android:textColorHighlight="@color/s_button_blue"
+        android:textColorHint="#330D0D0D"
+        android:textSize="16sp"
+        android:autofillHints=""
+        tools:ignore="TextFields" />
 
     <LinearLayout
         android:id="@+id/llpicker"
@@ -40,7 +38,8 @@
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="8dp"
         android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@id/ll_write">
+        app:layout_constraintTop_toBottomOf="@id/edt_write"
+        android:baselineAligned="false">
 
         <LinearLayout
             android:id="@+id/ll_date"
@@ -56,6 +55,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="18dp"
+                android:contentDescription="@string/app_name"
                 android:layout_marginStart="15dp"
                 android:src="@drawable/ic_calendar" />
 
@@ -68,7 +68,8 @@
                 android:gravity="center"
                 android:text="__-__-____"
                 android:textColor="@color/s_dark_blue_text"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                tools:ignore="NestedWeights" />
         </LinearLayout>
 
         <LinearLayout
@@ -84,6 +85,7 @@
                 android:id="@+id/iv_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:contentDescription="@string/app_name"
                 android:layout_marginVertical="18dp"
                 android:layout_marginStart="15dp"
                 android:src="@drawable/ic_time" />
@@ -97,7 +99,8 @@
                 android:gravity="center"
                 android:text="__-__"
                 android:textColor="@color/s_dark_blue_text"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                tools:ignore="NestedWeights" />
         </LinearLayout>
 
     </LinearLayout>
@@ -106,7 +109,7 @@
         android:id="@+id/btn_save"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Salash"
+        tools:text="Salash"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginTop="50dp"
         app:backgroundTint="@null"

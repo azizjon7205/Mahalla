@@ -7,10 +7,10 @@ import androidx.room.RoomDatabase
 import uz.frankie.mahalla.data.dao.MyselfDao
 import uz.frankie.mahalla.data.entity.MyselfData
 
-@Database(entities = [MyselfData::class], version = 1, exportSchema = false)
+@Database(entities = [MyselfData::class], version = 2)
 abstract class MyDatabase : RoomDatabase() {
 
-    abstract fun itemDao(): MyselfDao
+    abstract fun myselfDao(): MyselfDao
 
     companion object {
         @Volatile
@@ -21,7 +21,7 @@ abstract class MyDatabase : RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     MyDatabase::class.java,
-                    "my_database"
+                    "myself_database"
                 ).build()
                 INSTANCE = instance
                 instance

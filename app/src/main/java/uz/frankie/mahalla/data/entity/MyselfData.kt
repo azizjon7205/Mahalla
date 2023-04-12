@@ -1,5 +1,7 @@
 package uz.frankie.mahalla.data.entity
 
+import android.widget.EditText
+import android.widget.TextView
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 

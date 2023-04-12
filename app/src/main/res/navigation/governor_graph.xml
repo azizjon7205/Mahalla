@@ -86,7 +86,7 @@
         android:id="@+id/addInfoToMyselfScreen"
         android:name="uz.frankie.mahalla.ui.governor.task.AddInfoToMyselfScreen"
         android:label="AddInfoToMyselfScreen"
-        tools:layout="@layout/add_info_to_myself"/>
+        tools:layout="@layout/dialog_add_task_to_myself"/>
 
 
 </navigation>
