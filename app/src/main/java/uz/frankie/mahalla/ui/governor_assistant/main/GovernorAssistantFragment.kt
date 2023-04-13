@@ -1,5 +1,6 @@
 package uz.frankie.mahalla.ui.governor_assistant.main
 
+import androidx.appcompat.widget.Toolbar
 import uz.frankie.mahalla.R
 import uz.frankie.mahalla.databinding.FragmentGovernorAssistantBinding
 import uz.frankie.mahalla.adapter.governor_assistant.PersonInfo
@@ -41,6 +42,8 @@ class GovernorAssistantFragment : BaseGovernorAssistantFragment<FragmentGovernor
             navController.navigateSafely(R.id.action_governorAssistantFragment_to_detailsFragment)
         }
     }
+
+    override fun getToolbar(): Toolbar? = null
 
     private fun personList(name: String? = null): ArrayList<PersonInfo>{
         val items = ArrayList<PersonInfo>()
