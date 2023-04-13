@@ -13,19 +13,19 @@ abstract class MyDatabase : RoomDatabase() {
     abstract fun myselfDao(): MyselfDao
 
     companion object {
-        @Volatile
-        private var INSTANCE: MyDatabase? = null
+        private var instance: MyDatabase? = null
 
+        @Synchronized
         fun getInstance(context: Context): MyDatabase {
-            return INSTANCE ?: synchronized(this) {
-                val instance = Room.databaseBuilder(
+
+            if (instance == null)
+                instance = Room.databaseBuilder(
                     context.applicationContext,
                     MyDatabase::class.java,
                     "myself_database"
-                ).build()
-                INSTANCE = instance
-                instance
-            }
+                ).fallbackToDestructiveMigration().allowMainThreadQueries().build()
+
+            return instance!!
         }
     }
 }

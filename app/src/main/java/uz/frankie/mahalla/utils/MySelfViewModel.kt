@@ -2,13 +2,17 @@ package uz.frankie.mahalla.utils
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.room.Insert
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import uz.frankie.mahalla.data.entity.MyselfData
+import javax.inject.Inject
 
-class MySelfViewModel(private val mySelfRepository: MySelfRepository) : ViewModel() {
+@HiltViewModel
+class MySelfViewModel @Inject constructor(private val mySelfRepository: MySelfRepository) : ViewModel() {
 
 
 

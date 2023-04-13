@@ -7,8 +7,8 @@ import uz.frankie.mahalla.data.entity.MyselfData
 @Dao
 interface MyselfDao {
 
-    @Query("SELECT * FROM items")
-    fun getAllItems(): List<MyselfData>
+    @Query("SELECT * FROM my_data_table")
+    suspend fun getAllItems(): List<MyselfData>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertItem(item: MyselfData)

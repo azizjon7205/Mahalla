@@ -4,8 +4,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import uz.frankie.mahalla.data.dao.MyselfDao
 import uz.frankie.mahalla.data.entity.MyselfData
+import javax.inject.Inject
 
-class MySelfRepository(private val myDao: MyselfDao) {
+class MySelfRepository @Inject constructor(private val myDao: MyselfDao) {
 
     suspend fun insertMyData(myData: MyselfData) {
         withContext(Dispatchers.IO) {
