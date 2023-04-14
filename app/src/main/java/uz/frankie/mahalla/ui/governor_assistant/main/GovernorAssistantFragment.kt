@@ -15,6 +15,11 @@ class GovernorAssistantFragment : BaseGovernorAssistantFragment<FragmentGovernor
 
     private val personInfoAdapter by lazy { PersonInfoAdapter() }
     override fun onViewCreate() {
+        setUpToolbar()
+        initViews()
+    }
+
+    private fun initViews(){
         personInfoAdapter.setData(personList())
         binding.apply {
             rvPersons.adapter = personInfoAdapter
@@ -27,9 +32,6 @@ class GovernorAssistantFragment : BaseGovernorAssistantFragment<FragmentGovernor
                 }.show()
             }
 
-            ivBack.setOnClickListener {
-                navController.popBackStack()
-            }
             ivAddUser.setOnClickListener {
                 navController.navigateSafely(R.id.action_governorAssistantFragment_to_addUserFragment)
             }
@@ -43,7 +45,17 @@ class GovernorAssistantFragment : BaseGovernorAssistantFragment<FragmentGovernor
         }
     }
 
-    override fun getToolbar(): Toolbar? = null
+    private fun setUpToolbar(){
+        binding.toolbarLayout.apply {
+            title.text = resources.getString(R.string.xotin_qizlar)
+            rightIv.setImageResource(R.drawable.ic_notification)
+            rightIv.setOnClickListener {
+                // todo
+            }
+        }
+    }
+
+    override fun getToolbar(): Toolbar = binding.toolbarLayout.toolbarFragment
 
     private fun personList(name: String? = null): ArrayList<PersonInfo>{
         val items = ArrayList<PersonInfo>()
