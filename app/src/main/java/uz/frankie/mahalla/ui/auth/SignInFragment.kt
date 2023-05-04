@@ -63,11 +63,12 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
             userName.addTextChangedListener(textWatcher)
             passwordEt.addTextChangedListener(textWatcher)
 
-//            btnSignIn.isEnabled = true
+            btnSignIn.isEnabled = true
         }
 
         binding.btnSignIn.setOnClickListener {
 
+            activityNavController().navigateSafely(R.id.action_global_governorFlowFragment)
             val message = FCMNote(
                 Notification(
                     title = "Test",
@@ -80,7 +81,7 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
             loginRequest = LoginRequest(binding.userName.text.toString(), binding.passwordEt.text.toString(), token.toString() + "w")
 
             Logger.d("@@@", "Login data: ${loginRequest}")
-            authViewModel.login(loginRequest!!)
+//            authViewModel.login(loginRequest!!)
 
             Toast.makeText(requireActivity(), "Signed in successfully", Toast.LENGTH_SHORT).show()
         }

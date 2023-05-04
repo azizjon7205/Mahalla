@@ -15,6 +15,7 @@ import uz.frankie.mahalla.R
 import uz.frankie.mahalla.model.Village
 import uz.frankie.mahalla.adapter.governor.VillagesListAdapter
 import uz.frankie.mahalla.databinding.FragmentGovernorBinding
+import uz.frankie.mahalla.model.Neighborhood
 import uz.frankie.mahalla.utils.extentions.collectLA
 import uz.frankie.mahalla.viewmodels.NeighborhoodVM
 
@@ -22,13 +23,13 @@ import uz.frankie.mahalla.viewmodels.NeighborhoodVM
 class GovernorFragment : Fragment(R.layout.fragment_governor), SearchView.OnQueryTextListener {
     private val binding by viewBinding(FragmentGovernorBinding::bind)
     private val adapterVillages by lazy { VillagesListAdapter() }
-    private var list = ArrayList<Village>()
+    private var list = ArrayList<Neighborhood>()
     private val neighborhoodVM: NeighborhoodVM by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        neighborhoodVM.getNeighborhoodList()
+//        neighborhoodVM.getNeighborhoodList()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -36,7 +37,7 @@ class GovernorFragment : Fragment(R.layout.fragment_governor), SearchView.OnQuer
 
         listOfVillages()
         initViews()
-        collectUiState()
+//        collectUiState()
     }
 
     private fun initViews() {
@@ -44,6 +45,7 @@ class GovernorFragment : Fragment(R.layout.fragment_governor), SearchView.OnQuer
             findNavController().navigate(R.id.action_governorFragment_to_villagesFragment)
         }
 
+        adapterVillages.submit(list)
         binding.apply {
             rvVillages.adapter = adapterVillages
 
@@ -91,11 +93,12 @@ class GovernorFragment : Fragment(R.layout.fragment_governor), SearchView.OnQuer
     }
 
     private fun listOfVillages(){
-        list.add(Village(1, "Yoshlik"))
-        list.add(Village(2, "Shodlik"))
-        list.add(Village(3, "Miskin"))
-        list.add(Village(4, "Shodiyona"))
-        list.add(Village(5, "Shodlik"))
+        list.clear()
+        list.add(Neighborhood("1", "Yoshlik", "Olmazor", 1))
+        list.add(Neighborhood("2", "Shodlik", "Olmazor", 1))
+        list.add(Neighborhood("3", "Miskin", "Olmazor", 1))
+        list.add(Neighborhood("4", "Shodiyona", "Olmazor", 1))
+        list.add(Neighborhood("5", "Shodlik", "Olmazor", 1))
 
     }
 
