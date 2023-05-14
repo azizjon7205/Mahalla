@@ -78,7 +78,7 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
             )
 //            notifViewModel.sendMessage(message)
 
-            loginRequest = LoginRequest(binding.userName.text.toString(), binding.passwordEt.text.toString(), token.toString() + "w")
+            loginRequest = LoginRequest("+${binding.userName.text}", binding.passwordEt.text.toString(), token.toString() + "w")
 
             Logger.d("@@@", "Login data: ${loginRequest}")
 //            authViewModel.login(loginRequest!!)

@@ -23,9 +23,16 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            shrinkResources true
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+       /* debug {
+            shrinkResources false
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            applicationIdSuffix ".debug"
+        }*/
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -86,7 +93,6 @@ dependencies {
     implementation("com.otaliastudios:zoomlayout:1.9.0")
 
 
-
     //material
     implementation 'com.google.android.material:material:1.8.0'
 
@@ -97,7 +103,6 @@ dependencies {
 
     // Gson
     implementation 'com.google.code.gson:gson:2.9.0'
-
 
 
 }
