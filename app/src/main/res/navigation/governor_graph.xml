@@ -68,6 +68,25 @@
         android:name="uz.frankie.mahalla.ui.villages.VillageDetailsFragment"
         android:label="fragment_village_details"
         tools:layout="@layout/fragment_village_details" />
+    <fragment
+        android:id="@+id/myselfScreen"
+        android:name="uz.frankie.mahalla.ui.governor.task.MyselfScreen"
+        android:label="MyselfScreen"
+        tools:layout="@layout/screen_myself">
+        <action
+            android:id="@+id/action_myselfScreen_to_addInfoToMyselfScreen"
+            app:destination="@id/addInfoToMyselfScreen" />
+    </fragment>
+    <fragment
+        android:id="@+id/toTownScreen"
+        android:name="uz.frankie.mahalla.ui.governor.task.ToTownScreen"
+        android:label="ToTownScreen"
+        tools:layout="@layout/screen_to_town"/>
+    <fragment
+        android:id="@+id/addInfoToMyselfScreen"
+        android:name="uz.frankie.mahalla.ui.governor.task.AddInfoToMyselfScreen"
+        android:label="AddInfoToMyselfScreen"
+        tools:layout="@layout/dialog_add_task_to_myself"/>
 
 
 </navigation>
