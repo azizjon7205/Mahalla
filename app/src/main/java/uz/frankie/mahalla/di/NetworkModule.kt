@@ -13,7 +13,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import uz.frankie.mahalla.BuildConfig
-import uz.frankie.mahalla.network.services.GovernorService
+import uz.frankie.mahalla.network.services.NeighborhoodService
 import uz.frankie.mahalla.network.services.NotificationService
 import uz.frankie.mahalla.utils.Constants
 import uz.frankie.mahalla.utils.SharedPreferenceHelper
@@ -39,8 +39,8 @@ class NetworkModule {
 //    }
 
     @[Provides Singleton]
-    fun provideGovernorService(retrofit: Retrofit): GovernorService {
-        return retrofit.create(GovernorService::class.java)
+    fun provideGovernorService(retrofit: Retrofit): NeighborhoodService {
+        return retrofit.create(NeighborhoodService::class.java)
     }
 
     @[Provides Singleton]

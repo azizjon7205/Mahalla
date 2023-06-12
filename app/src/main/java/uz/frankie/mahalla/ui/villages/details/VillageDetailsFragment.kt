@@ -1,4 +1,4 @@
-package uz.frankie.mahalla.ui.villages
+package uz.frankie.mahalla.ui.villages.details
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

@@ -8,6 +8,7 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.widget.SearchView
+import androidx.appcompat.widget.Toolbar
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -16,12 +17,13 @@ import uz.frankie.mahalla.model.Village
 import uz.frankie.mahalla.adapter.governor.VillagesListAdapter
 import uz.frankie.mahalla.databinding.FragmentGovernorBinding
 import uz.frankie.mahalla.model.Neighborhood
+import uz.frankie.mahalla.ui.BaseFragment
 import uz.frankie.mahalla.utils.extentions.collectLA
 import uz.frankie.mahalla.viewmodels.NeighborhoodVM
 
 @AndroidEntryPoint
-class GovernorFragment : Fragment(R.layout.fragment_governor), SearchView.OnQueryTextListener {
-    private val binding by viewBinding(FragmentGovernorBinding::bind)
+class GovernorFragment : BaseFragment<FragmentGovernorBinding>(FragmentGovernorBinding::inflate), SearchView.OnQueryTextListener {
+
     private val adapterVillages by lazy { VillagesListAdapter() }
     private var list = ArrayList<Neighborhood>()
     private val neighborhoodVM: NeighborhoodVM by viewModels()
@@ -39,6 +41,12 @@ class GovernorFragment : Fragment(R.layout.fragment_governor), SearchView.OnQuer
         initViews()
 //        collectUiState()
     }
+
+    override fun onViewCreate() {
+
+    }
+
+    override fun getToolbar(): Toolbar = binding.toolbar
 
     private fun initViews() {
         adapterVillages.onClick = {

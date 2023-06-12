@@ -9,7 +9,7 @@ import uz.frankie.mahalla.model.LoginRequest
 import uz.frankie.mahalla.model.LoginResponse
 import uz.frankie.mahalla.model.NeighborhoodRes
 
-interface GovernorService {
+interface NeighborhoodService {
 
     @POST("/api/v1/login/")
     suspend fun login(@Body loginRequest: LoginRequest): Response<BaseResponse<LoginResponse>>
