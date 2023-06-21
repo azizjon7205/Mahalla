@@ -23,6 +23,9 @@ class VillagePassportScreen:Fragment(R.layout.fragment_villlage_passport) {
             llTownWorker.setOnClickListener {
                 findNavController().navigate(R.id.action_passwordOfTownScreen_to_villageStaff)
             }
+            ivBack.setOnClickListener {
+                findNavController().popBackStack()
+            }
 
         }
     }
