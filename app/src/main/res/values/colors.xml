@@ -27,11 +27,14 @@
     <color name="s_green">#3BB800</color>
     <color name="s_light_green">#F5F7F6</color>
     <color name="s_button_blue">#306ADC</color>
-
+    <color name="transparent">#00000000</color>
 
 
 
     <color name="s_black_text">#001135</color>
     <color name="s_dark_blue_text">#071027</color>
+    <color name="white_70">#B3FFFFFF</color>
+    <color name="light_blue">#EEF6FF</color>
+    <color name="background">#F9FAFE</color>
 
 </resources>

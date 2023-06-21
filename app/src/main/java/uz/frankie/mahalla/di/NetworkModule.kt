@@ -3,9 +3,7 @@ package uz.frankie.mahalla.di
 import android.app.Application
 import android.os.Handler
 import android.os.Looper
-import android.util.Base64
 import com.chuckerteam.chucker.api.ChuckerInterceptor
-import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,7 +14,6 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import uz.frankie.mahalla.BuildConfig
 import uz.frankie.mahalla.network.services.NeighborhoodService
-import uz.frankie.mahalla.network.services.GovernorService
 import uz.frankie.mahalla.network.services.NotificationService
 import uz.frankie.mahalla.utils.Constants
 import uz.frankie.mahalla.utils.SharedPreferenceHelper
@@ -35,15 +32,15 @@ class NetworkModule {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
+//
+//    @[Provides Singleton]
+//    fun provideNeighborhoodService(retrofit: Retrofit): NeighborhoodService {
+//        return retrofit.create(NeighborhoodService::class.java)
+//    }
 
     @[Provides Singleton]
-    fun provideNeighborhoodService(retrofit: Retrofit): NeighborhoodService {
+    fun provideGovernorService(retrofit: Retrofit): NeighborhoodService {
         return retrofit.create(NeighborhoodService::class.java)
-    }
-
-    @[Provides Singleton]
-    fun provideGovernorService(retrofit: Retrofit): GovernorService {
-        return retrofit.create(GovernorService::class.java)
     }
 
     @[Provides Singleton]

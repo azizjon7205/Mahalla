@@ -7,6 +7,7 @@ import uz.frankie.mahalla.databinding.DialogCriteriaBinding
 import uz.frankie.mahalla.adapter.governor_assistant.CriteriaAdapter
 
 class CriteriaDialog(context: Context, criteriaList: List<String>) : AlertDialog(context) {
+
     val binding = DialogCriteriaBinding.inflate(LayoutInflater.from(context))
     private val criteriaAdapter by lazy { CriteriaAdapter() }
 
@@ -17,7 +18,6 @@ class CriteriaDialog(context: Context, criteriaList: List<String>) : AlertDialog
     init {
         window?.setBackgroundDrawableResource(android.R.color.transparent)
         setCancelable(false)
-        setView(binding.root)
 
         criteriaAdapter.apply {
             setData(criteriaList)
@@ -27,6 +27,8 @@ class CriteriaDialog(context: Context, criteriaList: List<String>) : AlertDialog
             }
         }
         binding.rvCriteria.adapter = criteriaAdapter
+
+        setView(binding.root)
     }
 
 }
