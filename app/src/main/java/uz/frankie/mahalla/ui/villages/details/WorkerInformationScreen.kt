@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import uz.frankie.mahalla.R
 
 class WorkerInformationScreen:Fragment(R.layout.screen_worker_information) {
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
@@ -14,4 +15,5 @@ class WorkerInformationScreen:Fragment(R.layout.screen_worker_information) {
     private fun initView() {
 
     }
+
 }
