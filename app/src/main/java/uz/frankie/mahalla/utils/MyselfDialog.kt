@@ -4,14 +4,16 @@ import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.WindowManager
 import uz.frankie.mahalla.data.entity.MyselfData
 import uz.frankie.mahalla.databinding.DialogAddTaskToMyselfBinding
-import java.util.*
+import java.util.Calendar
 
 class MyselfDialog(context: Context) : AlertDialog(context) {
 
-    val binding = DialogAddTaskToMyselfBinding.inflate(LayoutInflater.from(context))
+    val binding = DialogAddTaskToMyselfBinding.inflate(LayoutInflater.from(context),null,false)
 
     private var createTask: ((MyselfData) -> Unit)? = null
     fun setOnCreateTaskListener(f: (item: MyselfData) -> Unit) {
@@ -21,6 +23,13 @@ class MyselfDialog(context: Context) : AlertDialog(context) {
     init {
         window?.setBackgroundDrawableResource(android.R.color.transparent)
         setCancelable(false)
+
+        val windowLayoutParams = WindowManager.LayoutParams().apply {
+            copyFrom(window?.attributes)
+            width = WindowManager.LayoutParams.MATCH_PARENT
+            height = WindowManager.LayoutParams.WRAP_CONTENT
+        }
+        window?.attributes = windowLayoutParams
 
         binding.apply {
             llDate.setOnClickListener { showDatePicker() }
@@ -32,7 +41,9 @@ class MyselfDialog(context: Context) : AlertDialog(context) {
                         date = tvDate.text.toString(),
                         time = tvTime.text.toString()
                     )
+
                 )
+
                 dismiss()
             }
         }

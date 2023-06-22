@@ -14,8 +14,6 @@ import javax.inject.Inject
 @HiltViewModel
 class MySelfViewModel @Inject constructor(private val mySelfRepository: MySelfRepository) : ViewModel() {
 
-
-
     private val _listMySelfDataState = MutableStateFlow<UiStateList<MyselfData>>(UiStateList.EMPTY)
     val listMySelfDataState = _listMySelfDataState.asStateFlow()
 
@@ -24,12 +22,26 @@ class MySelfViewModel @Inject constructor(private val mySelfRepository: MySelfRe
         try {
             val listMySelf = mySelfRepository.getAllMyData()
             _listMySelfDataState.value = UiStateList.SUCCESS(listMySelf)
-
         }catch (e:java.lang.Exception){
             _listMySelfDataState.value = UiStateList.ERROR(e.localizedMessage ?: "ERROR_MESSAGE")
         }
 
     }
+
+    private val _insertMyDataState = MutableStateFlow<UiStateObject<Unit>>(UiStateObject.EMPTY)
+    val insertMyDataState: StateFlow<UiStateObject<Unit>> = _insertMyDataState
+
+    fun insertMyData(data: MyselfData) = viewModelScope.launch {
+        _insertMyDataState.value = UiStateObject.LOADING
+        try {
+            mySelfRepository.insertMyData(data)
+            _insertMyDataState.value = UiStateObject.SUCCESS(Unit)
+        } catch (e: Exception) {
+            _insertMyDataState.value = UiStateObject.ERROR(e.localizedMessage ?: "ERROR_MESSAGE")
+        }
+    }
+
+
 
 
 
