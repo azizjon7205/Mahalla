@@ -19,7 +19,7 @@ class ToolbarManager(
             toolbar.title = currentDestination?.label
 
             if (topLevelDestinations.contains(currentDestination?.id).not()) {
-                toolbar.setNavigationIcon(R.drawable.ic_arrow_back)
+                toolbar.setNavigationIcon(R.drawable.ic_arrow_left)
                 toolbar.setNavigationOnClickListener { navController.navigateUp(appBarConfiguration) }
             }
         }

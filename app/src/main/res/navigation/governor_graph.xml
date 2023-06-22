@@ -98,6 +98,9 @@
         <action
             android:id="@+id/action_passwordOfTownScreen_to_villageStaff"
             app:destination="@id/villageStaff" />
+        <action
+            android:id="@+id/action_passwordOfTownScreen_to_villageAllInformationFragment"
+            app:destination="@id/villageAllInformationFragment" />
     </fragment>
     <fragment
         android:id="@+id/staffInfo"
@@ -113,6 +116,11 @@
             android:id="@+id/action_villageStaff_to_staffInfo"
             app:destination="@id/staffInfo" />
     </fragment>
+    <fragment
+        android:id="@+id/villageAllInformationFragment"
+        android:name="uz.frankie.mahalla.ui.villages.details.VillageAllInformationFragment"
+        android:label="fragment_village_all_information"
+        tools:layout="@layout/fragment_village_all_information" />
 
 
 </navigation>
