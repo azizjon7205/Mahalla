@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_weight="1"
-            android:text="Shodlik mahallasi PASPORTI"
+            android:text="Yoshlik mahallasi PASPORTI"
             android:textColor="#071027"
             android:textSize="16sp"
             android:textStyle="bold" />

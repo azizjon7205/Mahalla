@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:paddingHorizontal="16dp"
     android:paddingTop="18dp"
+    android:background="@color/background"
     tools:context=".ui.villages.details.VillageDetailsFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout

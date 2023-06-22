@@ -9,7 +9,7 @@
         android:id="@+id/governorFragment"
         android:name="uz.frankie.mahalla.ui.governor.home.GovernorFragment"
         android:label="fragment_governor"
-        tools:layout="@layout/fragment_governor" >
+        tools:layout="@layout/fragment_governor">
         <action
             android:id="@+id/action_governorFragment_to_villagesFragment"
             app:destination="@id/villagesFragment" />
@@ -18,7 +18,7 @@
         android:id="@+id/villagesFragment"
         android:name="uz.frankie.mahalla.ui.villages.VillageFragment"
         android:label="fragment_village"
-        tools:layout="@layout/fragment_village" >
+        tools:layout="@layout/fragment_village">
         <action
             android:id="@+id/action_villagesFragment_to_governorAssistantFragment"
             app:destination="@id/governorAssistantFragment" />
@@ -30,7 +30,7 @@
         android:id="@+id/governorAssistantFragment"
         android:name="uz.frankie.mahalla.ui.governor_assistant.main.GovernorAssistantFragment"
         android:label="fragment_governor_assistant"
-        tools:layout="@layout/fragment_governor_assistant" >
+        tools:layout="@layout/fragment_governor_assistant">
         <action
             android:id="@+id/action_governorAssistantFragment_to_detailsFragment"
             app:destination="@id/detailsFragment" />
@@ -42,7 +42,7 @@
         android:id="@+id/detailsFragment"
         android:name="uz.frankie.mahalla.ui.governor_assistant.details.DetailsFragment"
         android:label="DetailsFragment"
-        tools:layout="@layout/fragment_details"/>
+        tools:layout="@layout/fragment_details" />
     <fragment
         android:id="@+id/addUserFragment"
         android:name="uz.frankie.mahalla.ui.governor_assistant.add_user.AddUserFragment"
@@ -81,17 +81,17 @@
         android:id="@+id/toTownScreen"
         android:name="uz.frankie.mahalla.ui.governor.task.ToTownScreen"
         android:label="ToTownScreen"
-        tools:layout="@layout/screen_to_town"/>
+        tools:layout="@layout/screen_to_town" />
     <fragment
         android:id="@+id/addInfoToMyselfScreen"
         android:name="uz.frankie.mahalla.ui.governor.task.AddInfoToMyselfScreen"
         android:label="AddInfoToMyselfScreen"
-        tools:layout="@layout/dialog_add_task_to_myself"/>
+        tools:layout="@layout/dialog_add_task_to_myself" />
     <fragment
         android:id="@+id/passwordOfTownScreen"
         android:name="uz.frankie.mahalla.ui.villages.details.VillagePassportScreen"
-        tools:layout="@layout/fragment_villlage_passport"
-        android:label="PasswordOfTownScreen" >
+        android:label="PasswordOfTownScreen"
+        tools:layout="@layout/fragment_villlage_passport">
         <action
             android:id="@+id/action_passwordOfTownScreen_to_villageDetailsFragment"
             app:destination="@id/villageDetailsFragment" />
@@ -100,18 +100,22 @@
             app:destination="@id/villageStaff" />
     </fragment>
     <fragment
-        android:id="@+id/staffInfo"
-        android:name="uz.frankie.mahalla.ui.villages.details.VillageWorkerInfoScreen"
-        tools:layout="@layout/fragment_village_worker_info"
-        android:label="StaffInfo" />
-    <fragment
         android:id="@+id/villageStaff"
         android:name="uz.frankie.mahalla.ui.villages.details.VillageWorkersScreen"
-        tools:layout="@layout/fragment_village_workers"
-        android:label="VillageStaff" >
+        android:label="VillageStaff"
+        tools:layout="@layout/fragment_village_workers">
         <action
-            android:id="@+id/action_villageStaff_to_staffInfo"
-            app:destination="@id/staffInfo" />
+            android:id="@+id/action_villageStaff_to_villageWorkerInfoScreen"
+            app:destination="@id/villageWorkerInfoScreen" />
+    </fragment>
+    <fragment
+        android:id="@+id/villageWorkerInfoScreen"
+        android:name="uz.frankie.mahalla.ui.villages.details.VillageWorkerInfoScreen"
+        android:label="VillageWorkerInfoScreen">
+        <argument
+            android:name="staffData"
+            app:argType="uz.frankie.mahalla.model.Staff" />
+
     </fragment>
 
 
