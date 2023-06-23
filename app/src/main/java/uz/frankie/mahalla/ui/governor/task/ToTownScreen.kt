@@ -19,7 +19,6 @@ class ToTownScreen : Fragment(R.layout.screen_to_town) {
     private val binding by viewBinding(ScreenToTownBinding::bind)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         initClick()
     }
 
