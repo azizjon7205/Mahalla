@@ -21,7 +21,7 @@ class VillageFragment : Fragment(R.layout.fragment_village) {
     }
 
     private fun initViews() {
-        adapterVillageWorkers.submitList(listOfVillages())
+        adapterVillageWorkers.submitList(listOfWorkersVillages())
         adapterVillageWorkers.onClick = {
             findNavController().navigate(R.id.action_villagesFragment_to_governorAssistantFragment)
         }
@@ -32,10 +32,13 @@ class VillageFragment : Fragment(R.layout.fragment_village) {
             llDetail.setOnClickListener {
                 findNavController().navigate(R.id.action_villagesFragment_to_passwordOfTownScreen)
             }
+            ivBack.setOnClickListener {
+                findNavController().popBackStack()
+            }
         }
     }
 
-    private fun listOfVillages(): List<Village>{
+    private fun listOfWorkersVillages(): List<Village>{
         var list = ArrayList<Village>()
         list.add(Village(1, "Mahalla raisi"))
         list.add(Village(2, "Xotin qizlar"))

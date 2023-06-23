@@ -1,6 +1,11 @@
 package uz.frankie.mahalla.ui.governor
 
+import android.os.Bundle
+import android.util.Log
+import android.view.View
+import androidx.core.view.isVisible
 import androidx.navigation.NavController
+import androidx.navigation.NavDestination
 import androidx.navigation.ui.setupWithNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import uz.frankie.mahalla.R
@@ -18,5 +23,24 @@ class GovernorFlowFragment : BaseFlowFragment(R.layout.flow_fragment_governor, R
         super.setupNavigation(navController)
 
         binding.bnvGovernor.setupWithNavController(navController)
+
+        navController.addOnDestinationChangedListener(object: NavController.OnDestinationChangedListener{
+            override fun onDestinationChanged(
+                controller: NavController,
+                destination: NavDestination,
+                arguments: Bundle?
+            ) {
+                when(destination.id){
+                    R.id.governorFragment, R.id.taskFragment, R.id.profileFragment, R.id.settingsFragment -> {
+                        binding.bnvGovernor.visibility = View.VISIBLE
+                    }
+                    else -> {
+                        binding.bnvGovernor.visibility = View.GONE
+                    }
+                }
+            }
+
+        })
+
     }
 }

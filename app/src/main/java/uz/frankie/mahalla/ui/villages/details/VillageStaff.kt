@@ -6,25 +6,28 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import uz.frankie.mahalla.R
-import uz.frankie.mahalla.databinding.FragmentVillageDetailsBinding
+import uz.frankie.mahalla.databinding.FragmentVillageWorkersBinding
+import uz.frankie.mahalla.model.Staff
 
-class VillageDetailsFragment : Fragment(R.layout.fragment_village_details) {
-    private val binding by viewBinding(FragmentVillageDetailsBinding::bind)
+class VillageStaff : Fragment(R.layout.fragment_village_workers) {
 
+    private val binding by viewBinding(FragmentVillageWorkersBinding::bind)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         initviews()
-
-
     }
 
     private fun initviews() {
+
+
         binding.apply {
-            ivBack.setOnClickListener {
-                findNavController().popBackStack()
+            tvRais.setOnClickListener {
+                findNavController().navigate(R.id.action_villagesFragment_to_governorAssistantFragment)
             }
         }
+
     }
+
 }
