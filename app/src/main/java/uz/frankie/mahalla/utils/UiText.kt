@@ -7,7 +7,6 @@ import java.io.IOException
 
 sealed class UiText {
     data class DynamicString(@StringRes val resId: Int) : UiText()
-
     data class ErrorMessage(val message: String) : UiText()
     data class StaticString(val e: Exception? = null) : UiText()
 
