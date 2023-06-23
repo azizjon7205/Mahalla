@@ -14,6 +14,7 @@ import uz.frankie.mahalla.databinding.ScreenMyselfBinding
 import uz.frankie.mahalla.utils.MySelfViewModel
 import uz.frankie.mahalla.utils.MyselfDialog
 import uz.frankie.mahalla.utils.UiStateList
+import uz.frankie.mahalla.utils.UiStateObject
 
 @AndroidEntryPoint
 class MyselfScreen : Fragment(R.layout.screen_myself) {
@@ -36,21 +37,53 @@ class MyselfScreen : Fragment(R.layout.screen_myself) {
     }
 
     private fun setUpObservers() {
-
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             mySelfViewModel.listMySelfDataState.collect { mySelfListState ->
                 when (mySelfListState) {
                     is UiStateList.SUCCESS -> {
                         myselfAdapter.submitData(mySelfListState.data)
                         binding.rvMyself.adapter = myselfAdapter
+                        if(mySelfListState.data.isNotEmpty()){
+                            binding.apply {
+                            rvMyself.visibility = View.VISIBLE
+                            ivEmpty.visibility = View.GONE
+                            tvInfo.visibility = View.GONE
+                            }
+                        }
                     }
+
                     is UiStateList.EMPTY -> {
 
                     }
+
                     is UiStateList.ERROR -> {
 
                     }
+
                     is UiStateList.LOADING -> {
+
+                    }
+                }
+            }
+        }
+
+
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            mySelfViewModel.insertMyDataState.collect { mySelfListState ->
+                when (mySelfListState) {
+                    is UiStateObject.SUCCESS -> {
+                    mySelfViewModel.getListMySelfData()
+                    }
+
+                    is UiStateObject.EMPTY -> {
+
+                    }
+
+                    is UiStateObject.ERROR -> {
+
+                    }
+
+                    is UiStateObject.LOADING -> {
 
                     }
                 }
@@ -60,9 +93,9 @@ class MyselfScreen : Fragment(R.layout.screen_myself) {
 
 
     private fun initView() {
-        myselfDialog.setOnCreateTaskListener { myselfData->
-            // todo
-            
+        myselfDialog.setOnCreateTaskListener { myselfData ->
+            mySelfViewModel.insertMyData(myselfData)
+
         }
 
         binding.apply {

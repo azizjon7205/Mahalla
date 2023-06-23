@@ -19,4 +19,16 @@ class MySelfRepository @Inject constructor(private val myDao: MyselfDao) {
             myDao.getAllItems()
         }
     }
+
+    suspend fun deleteMyData(myData:MyselfData) {
+        return withContext(Dispatchers.IO) {
+            myDao.deleteItem(myData)
+        }
+    }
+
+    suspend fun updateMyData(myData:MyselfData) {
+        return withContext(Dispatchers.IO) {
+            myDao.updateItem(myData)
+        }
+    }
 }

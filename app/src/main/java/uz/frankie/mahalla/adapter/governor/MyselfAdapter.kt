@@ -11,7 +11,10 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import uz.frankie.mahalla.R
 import uz.frankie.mahalla.data.entity.MyselfData
-
+import uz.frankie.mahalla.model.Myself
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 
 class MyselfAdapter() :
@@ -19,10 +22,12 @@ class MyselfAdapter() :
     private val dif = AsyncListDiffer(this, ITEM_DIF)
 
     fun submitData(list: List<MyselfData>) {
-        dif.submitList(list)
+        val sortedList = list.sortedWith(compareBy<MyselfData> { convertToDate(it.date) }
+            .thenBy { convertToTime(it.time) })
+
+        dif.submitList(sortedList)
         Log.d("DIFLIST", "submitData: ${list}")
     }
-
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -42,8 +47,9 @@ class MyselfAdapter() :
         return dif.currentList.size
     }
 
+
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val nameTextView: TextView = itemView.findViewById(R.id.edt_write)
+        val nameTextView: TextView = itemView.findViewById(R.id.tv_information)
         val dateTextView: TextView = itemView.findViewById(R.id.tv_date)
         val timeTextView: TextView = itemView.findViewById(R.id.tv_time)
     }
@@ -60,5 +66,15 @@ class MyselfAdapter() :
             ): Boolean =
                 oldItem == newItem
         }
+    }
+
+    fun convertToDate(dateString: String): Date {
+        val format = SimpleDateFormat("MM/dd/yyyy", Locale.getDefault())
+        return format.parse(dateString) ?: Date()
+    }
+
+    fun convertToTime(timeString: String): Date {
+        val format = SimpleDateFormat("HH:mm", Locale.getDefault())
+        return format.parse(timeString) ?: Date()
     }
 }
