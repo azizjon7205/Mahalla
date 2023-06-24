@@ -23,20 +23,18 @@ class GovernorFragment : BaseFragment<FragmentGovernorBinding>(FragmentGovernorB
 
     private val adapterVillages by lazy { VillagesListAdapter() }
     private var list = ArrayList<Neighborhood>()
-    private val neighborhoodVM: NeighborhoodVM by viewModels()
+//    private val neighborhoodVM: NeighborhoodVM by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-//        neighborhoodVM.getNeighborhoodList()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        listOfVillages()
         initViews()
-//        collectUiState()
+        collectUiState()
     }
 
     override fun onViewCreate() {
@@ -50,7 +48,8 @@ class GovernorFragment : BaseFragment<FragmentGovernorBinding>(FragmentGovernorB
             findNavController().navigate(R.id.action_governorFragment_to_villagesFragment)
         }
 
-        adapterVillages.submit(list)
+//        adapterVillages.submit(list)
+
         binding.apply {
             rvVillages.adapter = adapterVillages
 
@@ -97,15 +96,15 @@ class GovernorFragment : BaseFragment<FragmentGovernorBinding>(FragmentGovernorB
         }
     }
 
-    private fun listOfVillages(){
-        list.clear()
-        list.add(Neighborhood("1", "Yoshlik", "Olmazor", 1))
-        list.add(Neighborhood("2", "Shodlik", "Olmazor", 1))
-        list.add(Neighborhood("3", "Miskin", "Olmazor", 1))
-        list.add(Neighborhood("4", "Shodiyona", "Olmazor", 1))
-        list.add(Neighborhood("5", "Shodlik", "Olmazor", 1))
-
-    }
+//    private fun listOfVillages(){
+//        list.clear()
+//        list.add(Neighborhood("1", "Yoshlik", "Olmazor", 1))
+//        list.add(Neighborhood("2", "Shodlik", "Olmazor", 1))
+//        list.add(Neighborhood("3", "Miskin", "Olmazor", 1))
+//        list.add(Neighborhood("4", "Shodiyona", "Olmazor", 1))
+//        list.add(Neighborhood("5", "Shodlik", "Olmazor", 1))
+//
+//    }
 
     override fun onQueryTextSubmit(query: String): Boolean {
         // Perform search logic here

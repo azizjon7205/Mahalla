@@ -32,6 +32,7 @@ class AuthViewModel @Inject constructor(private val authRepository: AuthReposito
                 is NetworkResource.Success -> {
                     _uiState.update { it.copy(data = result.data!!, isLoading = false) }
                     sharedPreferenceHelper.setAccessToken(result.data!!.access)
+                    sharedPreferenceHelper.setRole(result.data.role)
                 }
                 is NetworkResource.Error -> {
                     _uiState.update { it.copy(errorMessage = result.uiText.toString(), isLoading = false) }

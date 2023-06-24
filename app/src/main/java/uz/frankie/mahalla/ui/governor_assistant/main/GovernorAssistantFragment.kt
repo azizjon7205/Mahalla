@@ -1,17 +1,25 @@
 package uz.frankie.mahalla.ui.governor_assistant.main
 
+import android.view.View
 import androidx.appcompat.widget.Toolbar
+import dagger.hilt.android.AndroidEntryPoint
 import uz.frankie.mahalla.R
 import uz.frankie.mahalla.databinding.FragmentGovernorAssistantBinding
 import uz.frankie.mahalla.adapter.governor_assistant.PersonInfo
 import uz.frankie.mahalla.adapter.governor_assistant.PersonInfoAdapter
 import uz.frankie.mahalla.dialogs.governor_assistant.CriteriaDialog
 import uz.frankie.mahalla.ui.governor_assistant.BaseGovernorAssistantFragment
+import uz.frankie.mahalla.utils.SharedPreferenceHelper
 import uz.frankie.mahalla.utils.extentions.navigateSafely
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class GovernorAssistantFragment : BaseGovernorAssistantFragment<FragmentGovernorAssistantBinding>(
     FragmentGovernorAssistantBinding::inflate
 ) {
+
+    @Inject
+    lateinit var preferences: SharedPreferenceHelper
 
     private val personInfoAdapter by lazy { PersonInfoAdapter() }
     override fun onViewCreate() {
@@ -51,6 +59,16 @@ class GovernorAssistantFragment : BaseGovernorAssistantFragment<FragmentGovernor
             rightIv.setImageResource(R.drawable.ic_notification)
             rightIv.setOnClickListener {
                 // todo
+            }
+            when(preferences.getRole()){
+                "hokim" -> rightIv.visibility = View.GONE
+                "rais" -> {
+                    rightIv.visibility = View.VISIBLE
+                }
+                "worker" -> {
+                    rightIv.visibility = View.GONE
+                }
+
             }
         }
     }

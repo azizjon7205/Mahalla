@@ -10,20 +10,25 @@ import androidx.fragment.app.viewModels
 import com.google.firebase.messaging.FirebaseMessaging
 import dagger.hilt.android.AndroidEntryPoint
 import uz.frankie.mahalla.R
+import uz.frankie.mahalla.utils.SharedPreferenceHelper
 import uz.frankie.mahalla.utils.extentions.activityNavController
 import uz.frankie.mahalla.utils.extentions.collectLA
 import uz.frankie.mahalla.utils.extentions.navigateSafely
 import uz.frankie.mahalla.utils.logger.Logger
 import uz.frankie.mahalla.viewmodels.SplashViewModel
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class SplashFragment : Fragment(R.layout.fragment_splash) {
 
-    private val splashViewModel: SplashViewModel by viewModels()
+    @Inject
+    lateinit var preferences: SharedPreferenceHelper
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        Logger.d("RRR", "Splash >> ${preferences.getRole()}")
         countDownTimer()
         loadFCMToken()
     }
@@ -33,8 +38,7 @@ class SplashFragment : Fragment(R.layout.fragment_splash) {
             override fun onTick(millisUntilFinished: Long) { }
 
             override fun onFinish() {
-                splashViewModel.navigateToNext()
-                collectUiState()
+                navigateToNext()
             }
         }.start()
     }
@@ -49,19 +53,19 @@ class SplashFragment : Fragment(R.layout.fragment_splash) {
             // Save it in locally to use later
             val token = task.result
             Logger.d("@@@@", token.toString())
-//            PrefsManager(this).storeDeviceToken(token.toString())
         }
     }
 
-    private fun collectUiState(){
-        splashViewModel.uiState.collectLA(viewLifecycleOwner){ uiState ->
-            if (uiState.data!!){
-                activityNavController().navigateSafely(R.id.action_global_authFlowFragment)
-            } else {
-                activityNavController().navigateSafely(R.id.action_global_governorFlowFragment)
+    private fun navigateToNext() {
+        when (preferences.getRole()) {
+                "empty" -> activityNavController().navigateSafely(R.id.action_global_authFlowFragment)
+                "hokim" -> activityNavController().navigateSafely(R.id.action_global_governorFlowFragment)
+                "rais" -> activityNavController().navigateSafely(R.id.action_global_villagesFlowFragment)
+                "worker" -> activityNavController().navigateSafely(R.id.action_global_governorAssistantFlowFragment)
+                else -> activityNavController().navigateSafely(R.id.action_global_authFlowFragment)
+
             }
-        }
-    }
 
+    }
 
 }

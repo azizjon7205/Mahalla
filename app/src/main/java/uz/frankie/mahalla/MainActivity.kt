@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
         AppBarConfiguration(
             setOf(
                 R.id.governorFragment,
-                R.id.villageFragment
+                R.id.villagesFragment
             )
         )
     }

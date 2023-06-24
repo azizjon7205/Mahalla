@@ -4,11 +4,10 @@ data class FCMResp(
     val canonical_ids: Int,
     val failure: Int,
     val multicast_id: Long,
-    val results: List<Result>,
     val success: Int
 )
 
-data class Result(
-    val message_id: String? = null,
-    val error: String? = null
+data class FCMResponse(
+    val data: Int? = null,
+    val error: Boolean = true
 )

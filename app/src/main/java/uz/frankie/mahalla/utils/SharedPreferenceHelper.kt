@@ -7,6 +7,7 @@ import androidx.security.crypto.MasterKey
 import dagger.hilt.android.qualifiers.ApplicationContext
 import uz.frankie.mahalla.utils.Constants.APP_PREFS_NAME
 import uz.frankie.mahalla.utils.Constants.PREF_ACCESS_TOKEN
+import uz.frankie.mahalla.utils.Constants.PREF_ROLE
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -34,5 +35,13 @@ class SharedPreferenceHelper @Inject constructor(@ApplicationContext val context
     }
 
     fun getAccessToken() = preferences.getString(PREF_ACCESS_TOKEN, "empty")
+
+    fun setRole(role: String) {
+        preferences.edit {
+            putString(PREF_ROLE, role)
+        }
+    }
+
+    fun getRole() = preferences.getString(PREF_ROLE, "empty")
 
 }

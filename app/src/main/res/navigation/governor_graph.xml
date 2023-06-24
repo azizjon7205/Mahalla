@@ -114,6 +114,7 @@
     <fragment
         android:id="@+id/villageWorkerInfoScreen"
         android:name="uz.frankie.mahalla.ui.villages.details.VillageWorkerInfoScreen"
+        tools:layout="@layout/fragment_village_worker_info"
         android:label="VillageWorkerInfoScreen">
         <argument
             android:name="staffData"

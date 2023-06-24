@@ -17,21 +17,15 @@ import javax.inject.Inject
 class SplashViewModel @Inject constructor(private val sharedPreferenceHelper: SharedPreferenceHelper): ViewModel() {
     private var splashJob: Job? = null
 
-    private var _uiState = MutableStateFlow(NetworkState<Boolean>())
+    private var _uiState = MutableStateFlow(NetworkState<String>())
     val uiState = _uiState.asStateFlow()
 
     fun navigateToNext(){
         splashJob?.cancel()
         splashJob = viewModelScope.launch {
             _uiState.update { it.copy(isLoading = true) }
-            when(sharedPreferenceHelper.getAccessToken()){
-                "empty" ->{
-                    _uiState.update { it.copy(data = true, isLoading = false) }
-                }
-                else ->{
-                    _uiState.update { it.copy(data = false, isLoading = false) }
-                }
-            }
+            _uiState.update { it.copy(data = sharedPreferenceHelper.getAccessToken(), isLoading = false) }
+
         }
     }
 }

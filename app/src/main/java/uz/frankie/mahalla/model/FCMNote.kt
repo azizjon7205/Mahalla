@@ -1,11 +1,13 @@
 package uz.frankie.mahalla.model
 
 data class FCMNote(
-    val notification: Notification,
-    val registration_ids: ArrayList<String>
+    val api_key: String,
+    val notif_body: List<Notification>,
+    val body: String,
+    val title: String
 )
 
 data class Notification(
-    val title: String,
-    val body: String
+    val fcm_token: String,
+    val neighborhood_id: String
 )

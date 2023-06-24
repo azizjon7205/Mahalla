@@ -18,7 +18,16 @@ class NeighborhoodRepository @Inject constructor(
             val response = service.getNeighborhoods()
             if (response.isSuccessful) {
                 Log.d("@@@", "Villages list rep: ${response.body()?.data?.result}")
-                NetworkResource.Success(response.body()?.data?.result)
+                val neighborhoods = response.body()?.data?.result?.neighborhoods
+                neighborhoods?.forEach { neighborhood ->
+                    neighborhood.workers.forEach {
+                        if (it.role == "rais"){
+                            neighborhood.fcm_token = it.fcm_token
+                        }
+
+                    }
+                }
+                NetworkResource.Success(neighborhoods)
 
             } else {
                 NetworkResource.Error(UiText.StaticString())
@@ -29,5 +38,6 @@ class NeighborhoodRepository @Inject constructor(
             NetworkResource.Error(UiText.StaticString())
         }
     }
+
 
 }
