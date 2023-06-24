@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import uz.frankie.mahalla.databinding.ItemTowntaskBinding
 
+
 class TownTaskAdapter() : ListAdapter<String, TownTaskAdapter.VH>(ITEM_DIFF) {
 
     private var itemClick: ((String) -> Unit)? = null
