@@ -11,7 +11,6 @@ import kotlinx.coroutines.launch
 import uz.frankie.mahalla.model.Neighborhood
 import uz.frankie.mahalla.repositories.NeighborhoodRepository
 import uz.frankie.mahalla.utils.NetworkResource
-import uz.frankie.mahalla.viewmodels.state.NeighborhoodState
 import uz.frankie.mahalla.viewmodels.state.NetworkStateList
 import javax.inject.Inject
 
