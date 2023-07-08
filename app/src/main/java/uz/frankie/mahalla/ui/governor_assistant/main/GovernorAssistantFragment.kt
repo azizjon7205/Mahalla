@@ -2,7 +2,6 @@ package uz.frankie.mahalla.ui.governor_assistant.main
 
 import android.view.View
 import androidx.appcompat.widget.Toolbar
-import dagger.hilt.android.AndroidEntryPoint
 import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import uz.frankie.mahalla.R
