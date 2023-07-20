@@ -24,23 +24,17 @@ class GovernorFlowFragment : BaseFlowFragment(R.layout.flow_fragment_governor, R
 
         binding.bnvGovernor.setupWithNavController(navController)
 
-        navController.addOnDestinationChangedListener(object: NavController.OnDestinationChangedListener{
-            override fun onDestinationChanged(
-                controller: NavController,
-                destination: NavDestination,
-                arguments: Bundle?
-            ) {
-                when(destination.id){
-                    R.id.governorFragment, R.id.taskFragment, R.id.profileFragment, R.id.settingsFragment -> {
-                        binding.bnvGovernor.visibility = View.VISIBLE
-                    }
-                    else -> {
-                        binding.bnvGovernor.visibility = View.GONE
-                    }
+        navController.addOnDestinationChangedListener { controller, destination, arguments ->
+            when (destination.id) {
+                R.id.governorFragment, R.id.taskFragment, R.id.profileFragment, R.id.settingsFragment -> {
+                    binding.bnvGovernor.visibility = View.VISIBLE
+                }
+
+                else -> {
+                    binding.bnvGovernor.visibility = View.GONE
                 }
             }
-
-        })
+        }
 
     }
 }

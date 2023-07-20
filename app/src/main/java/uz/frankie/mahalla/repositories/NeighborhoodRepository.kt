@@ -22,7 +22,7 @@ class NeighborhoodRepository @Inject constructor(
                 neighborhoods.forEach { neighborhood ->
                     workers@ for (worker in neighborhood.workers){
                         if (worker.role == "rais"){
-                            neighborhood.fcm_token = worker.fcm_token
+                            neighborhood.fcm_token = worker.fcm_token[0]
                             neighborhoods[neighborhoods.indexOf(neighborhood)] = neighborhood
                             break@workers
                         }
