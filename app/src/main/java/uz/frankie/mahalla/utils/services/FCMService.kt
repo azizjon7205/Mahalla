@@ -2,6 +2,7 @@ package uz.frankie.mahalla.utils.services
 
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
+import uz.frankie.mahalla.utils.NotificationManager
 import uz.frankie.mahalla.utils.logger.Logger
 
 class FCMService: FirebaseMessagingService() {
@@ -19,5 +20,15 @@ class FCMService: FirebaseMessagingService() {
     override fun onMessageReceived(message: RemoteMessage) {
         super.onMessageReceived(message)
         Logger.i(TAG, "Message :: $message")
+
+        if (message.notification != null) {
+            // Since the notification is received directly
+            // from FCM, the title and the body can be
+            // fetched directly as below.
+            NotificationManager.showNotification(
+                message.notification!!.title,
+                message.notification!!.body
+            )
+        }
     }
 }
