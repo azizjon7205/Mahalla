@@ -14,5 +14,6 @@ object Constants {
     // Shared Preference Keys
     const val PREF_ACCESS_TOKEN = "ACCESS_TOKEN"
     const val PREF_ROLE = "USER_ROLE"
+    const val NEIGHBORHOOD_ID = "NEIGHBORHOOD_ID"
 
 }

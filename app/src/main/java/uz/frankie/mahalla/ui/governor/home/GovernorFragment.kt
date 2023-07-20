@@ -15,13 +15,17 @@ import uz.frankie.mahalla.adapter.governor.VillagesListAdapter
 import uz.frankie.mahalla.databinding.FragmentGovernorBinding
 import uz.frankie.mahalla.model.Neighborhood
 import uz.frankie.mahalla.ui.BaseFragment
+import uz.frankie.mahalla.utils.SharedPreferenceHelper
 import uz.frankie.mahalla.utils.extentions.collectLA
 import uz.frankie.mahalla.viewmodels.NeighborhoodVM
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class GovernorFragment : BaseFragment<FragmentGovernorBinding>(FragmentGovernorBinding::inflate), SearchView.OnQueryTextListener {
 
     private val adapterVillages by lazy { VillagesListAdapter() }
+    @Inject
+    lateinit var preferences: SharedPreferenceHelper
     private var list = ArrayList<Neighborhood>()
 //    private val neighborhoodVM: NeighborhoodVM by viewModels()
 
@@ -45,10 +49,11 @@ class GovernorFragment : BaseFragment<FragmentGovernorBinding>(FragmentGovernorB
 
     private fun initViews() {
         adapterVillages.onClick = {
+
+            preferences.setNeighborhoodID(it.id)
             findNavController().navigate(R.id.action_governorFragment_to_villagesFragment)
         }
 
-//        adapterVillages.submit(list)
 
         binding.apply {
             rvVillages.adapter = adapterVillages

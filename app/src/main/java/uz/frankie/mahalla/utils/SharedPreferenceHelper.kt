@@ -6,6 +6,7 @@ import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKey
 import dagger.hilt.android.qualifiers.ApplicationContext
 import uz.frankie.mahalla.utils.Constants.APP_PREFS_NAME
+import uz.frankie.mahalla.utils.Constants.NEIGHBORHOOD_ID
 import uz.frankie.mahalla.utils.Constants.PREF_ACCESS_TOKEN
 import uz.frankie.mahalla.utils.Constants.PREF_ROLE
 import javax.inject.Inject
@@ -43,5 +44,13 @@ class SharedPreferenceHelper @Inject constructor(@ApplicationContext val context
     }
 
     fun getRole() = preferences.getString(PREF_ROLE, "empty")
+
+    fun setNeighborhoodID(id: String) {
+        preferences.edit {
+            putString(NEIGHBORHOOD_ID, id)
+        }
+    }
+
+    fun getNeighborhoodID() = preferences.getString(NEIGHBORHOOD_ID, "empty")
 
 }
