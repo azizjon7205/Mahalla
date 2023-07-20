@@ -17,14 +17,15 @@ class NeighborhoodRepository @Inject constructor(
         return try {
             val response = service.getNeighborhoods()
             if (response.isSuccessful) {
-                Log.d("@@@", "Villages list rep: ${response.body()?.data?.result}")
-                val neighborhoods = response.body()?.data?.result?.neighborhoods
-                neighborhoods?.forEach { neighborhood ->
-                    neighborhood.workers.forEach {
-                        if (it.role == "rais"){
-                            neighborhood.fcm_token = it.fcm_token
-                        }
+                val neighborhoods: MutableList<Neighborhood> = response.body()?.data?.result?.neighborhoods?.toMutableList() ?: mutableListOf()
 
+                neighborhoods.forEach { neighborhood ->
+                    workers@ for (worker in neighborhood.workers){
+                        if (worker.role == "rais"){
+                            neighborhood.fcm_token = worker.fcm_token
+                            neighborhoods[neighborhoods.indexOf(neighborhood)] = neighborhood
+                            break@workers
+                        }
                     }
                 }
                 NetworkResource.Success(neighborhoods)

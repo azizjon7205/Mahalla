@@ -92,6 +92,7 @@ class ToTownScreen constructor(val navControllerTask: NavController) : BaseFragm
         binding.llTown.setOnClickListener {
             TownDialog(requireContext(), townsList).apply {
                 this.selectCriteria = {
+                    selectedVillages.clear()
                     selectedVillages.addAll(it)
                     this@ToTownScreen.binding.tvTowEnter.text = "${selectedVillages.size} ta mahalla belgilandi"
                 }

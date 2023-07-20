@@ -1,6 +1,8 @@
 package uz.frankie.mahalla.ui.auth
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.provider.Settings
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
@@ -37,11 +39,15 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
     lateinit var preferences: SharedPreferenceHelper
 
 
+    @SuppressLint("HardwareIds")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         loadFCMToken()
         collectUiState()
+
+        // Fetching Android ID and storing it into a constant
+        val mId = Settings.Secure.getString(context?.contentResolver, Settings.Secure.ANDROID_ID)
 
 
         binding.apply {
@@ -56,7 +62,7 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
 
         binding.btnSignIn.setOnClickListener {
 
-            loginRequest = LoginRequest("${binding.userName.text}", binding.passwordEt.text.toString(), token.toString() + "w")
+            loginRequest = LoginRequest("${binding.userName.text}", binding.passwordEt.text.toString(), token.toString(), mId)
 
             Logger.d("@@@", "Login data: ${loginRequest}")
             authViewModel.login(loginRequest!!)
