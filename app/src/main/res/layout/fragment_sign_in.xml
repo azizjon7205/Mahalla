@@ -52,8 +52,9 @@
             android:id="@+id/user_name"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="xotin_qizlar"
-            android:inputType="textLongMessage" />
+            android:text=""
+            android:hint="Telefon raqam"
+            android:inputType="phone" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -73,23 +74,22 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:ems="8"
-            android:text="fgvhbjnkmcdfjnidcj"
+            android:text=""
+            android:hint="Parol"
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_sign_in"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="56dp"
         android:layout_marginHorizontal="16dp"
-        android:backgroundTint="@color/s_dark_blue"
+        android:backgroundTint="@color/item_login_btn"
         android:enabled="false"
         android:text="Sign in"
         android:textColor="@color/white"
         app:cornerRadius="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password"
         app:layout_constraintVertical_bias="0.931" />
 </androidx.constraintlayout.widget.ConstraintLayout>

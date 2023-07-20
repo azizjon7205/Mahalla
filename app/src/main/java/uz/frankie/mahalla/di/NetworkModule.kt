@@ -3,9 +3,7 @@ package uz.frankie.mahalla.di
 import android.app.Application
 import android.os.Handler
 import android.os.Looper
-import android.util.Base64
 import com.chuckerteam.chucker.api.ChuckerInterceptor
-import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,9 +14,11 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import uz.frankie.mahalla.BuildConfig
 import uz.frankie.mahalla.network.services.NeighborhoodService
+import uz.frankie.mahalla.network.services.NotificationService
 import uz.frankie.mahalla.utils.Constants
 import uz.frankie.mahalla.utils.SharedPreferenceHelper
 import java.util.concurrent.TimeUnit
+import javax.inject.Named
 import javax.inject.Singleton
 
 @Module
@@ -27,17 +27,31 @@ class NetworkModule {
 
     @[Provides Singleton]
     fun provideRetrofitInstance(client: OkHttpClient): Retrofit {
-        return Retrofit.Builder().baseUrl(Constants.BASE_URL).client(client)
-            .addConverterFactory(
-                GsonConverterFactory.create(
-                    GsonBuilder().serializeNulls().setLenient().create()
-                )
-            ).build()
+        return Retrofit.Builder().baseUrl(Constants.BASE_URL)
+            .client(client)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+    }
+//
+//    @[Provides Singleton]
+//    fun provideNeighborhoodService(retrofit: Retrofit): NeighborhoodService {
+//        return retrofit.create(NeighborhoodService::class.java)
+//    }
+
+    @[Provides Singleton]
+    fun provideGovernorService(retrofit: Retrofit): NeighborhoodService {
+        return retrofit.create(NeighborhoodService::class.java)
     }
 
     @[Provides Singleton]
-    fun provideNeighborhoodService(retrofit: Retrofit): NeighborhoodService {
-        return retrofit.create(NeighborhoodService::class.java)
+    @Named("notification")
+    fun provideNotificationService(): NotificationService {
+        return Retrofit.Builder()
+                .baseUrl("https://fcm.googleapis.com/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+                .create(NotificationService::class.java)
+
     }
 
     @Singleton
@@ -63,14 +77,13 @@ class NetworkModule {
             .connectTimeout(2, TimeUnit.MINUTES).writeTimeout(2, TimeUnit.MINUTES)
             .callTimeout(2, TimeUnit.MINUTES).addInterceptor { chain ->
                 val request = chain.request()
-                val credentials: String =
-                    Constants.BASIC_USER_NAME_DEBUG + ":" + Constants.BASIC_PASSWORD_DEBUG
-                val basic =
-                    "Basic " + Base64.encodeToString(credentials.toByteArray(), Base64.NO_WRAP)
-                val newRequest = if (shared.getAccessToken()!! == "empty" || shared.getAccessToken() == "") request.newBuilder()
-                    .addHeader("Authorization", basic)
+//                val credentials: String =
+//                    Constants.BASIC_USER_NAME_DEBUG + ":" + Constants.BASIC_PASSWORD_DEBUG
+//                val basic =
+//                    "Basic " + Base64.encodeToString(credentials.toByteArray(), Base64.NO_WRAP)
+                val newRequest = if (shared.getAccessToken()!! != "empty") request.newBuilder()
+                    .addHeader("Authorization", "${shared.getAccessToken()}")
                 else request.newBuilder()
-                    .header("Authorization", "Bearer ${shared.getAccessToken()}")
                 chain.proceed(newRequest.build()).also {
                     if (it.code == 401) {
                         Handler(Looper.getMainLooper()).post { shared.setAccessToken("empty") }

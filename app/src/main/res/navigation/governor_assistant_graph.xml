@@ -5,11 +5,29 @@
     android:id="@+id/governor_assistant_graph.xml"
     app:startDestination="@id/governorAssistantFragment">
 
+
     <fragment
         android:id="@+id/governorAssistantFragment"
         android:name="uz.frankie.mahalla.ui.governor_assistant.main.GovernorAssistantFragment"
         android:label="fragment_governor_assistant"
-        tools:layout="@layout/fragment_governor_assistant" >
+        tools:layout="@layout/fragment_governor_assistant">
+        <action
+            android:id="@+id/action_governorAssistantFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+        <action
+            android:id="@+id/action_governorAssistantFragment_to_addUserFragment"
+            app:destination="@id/addUserFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="uz.frankie.mahalla.ui.governor_assistant.details.DetailsFragment"
+        android:label="DetailsFragment"
+        tools:layout="@layout/fragment_details" />
+    <fragment
+        android:id="@+id/addUserFragment"
+        android:name="uz.frankie.mahalla.ui.governor_assistant.add_user.AddUserFragment"
+        android:label="fragment_add_user"
+        tools:layout="@layout/fragment_add_user" />
+
 
 </navigation>

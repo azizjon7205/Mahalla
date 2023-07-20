@@ -9,6 +9,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -34,7 +36,7 @@ class TaskFragment : Fragment(R.layout.fragment_task) {
         val viewPager = binding.viewpager2
 
 
-        val pagerAdapter = ParentFragmentPagerAdapter(requireActivity())
+        val pagerAdapter = ParentFragmentPagerAdapter(requireActivity(), findNavController())
         viewPager.isUserInputEnabled = false
         viewPager.adapter = pagerAdapter
 
@@ -42,22 +44,18 @@ class TaskFragment : Fragment(R.layout.fragment_task) {
             val tabNames = listOf("Mahallalarga", "O'zimga")
             tab.text = tabNames[position]
         }.attach()
-
-
     }
-
-
 
 }
 class ParentFragmentPagerAdapter(
-    fragmentActivity: FragmentActivity
+    fragmentActivity: FragmentActivity, val navController: NavController
 ) : FragmentStateAdapter(fragmentActivity) {
 
     override fun createFragment(position: Int): Fragment {
         return when (position) {
-            0 -> ToTownScreen()
+            0 -> ToTownScreen(navController)
             1 -> MyselfScreen()
-            else -> ToTownScreen()
+            else -> ToTownScreen(navController)
         }
     }
 
