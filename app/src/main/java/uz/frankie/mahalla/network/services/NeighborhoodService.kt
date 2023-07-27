@@ -20,7 +20,7 @@ interface NeighborhoodService {
     @GET("/api/v1/neighborhoods")
     suspend fun getNeighborhoods(): Response<BaseResponse<NeighborhoodRes>>
 
-    @GET("/api/v1/populition")
+    @GET("/api/v1/populition/")
     suspend fun getPopulationList(): Response<BaseResponse<PopulationResponse>>
 
     @POST("/api/v1/notification/")
